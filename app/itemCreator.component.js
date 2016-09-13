@@ -9,24 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
-var app_component_1 = require('./app.component');
-var category_component_1 = require('./category.component');
-var item_component_1 = require('./item.component');
-var itemCreator_component_1 = require('./itemCreator.component');
-var AppModule = (function () {
-    function AppModule() {
+var item_1 = require('./item');
+var ItemCreatorComponent = (function () {
+    function ItemCreatorComponent() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, category_component_1.CategoryComponent, item_component_1.ItemComponent, itemCreator_component_1.ItemCreatorComponent],
-            bootstrap: [app_component_1.AppComponent]
+    ItemCreatorComponent.prototype.addItem = function (event) {
+        // TODO: handle case where no category is selected 
+        this.selectedCategory.items.push(new item_1.Item(newname.value));
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], ItemCreatorComponent.prototype, "categories", void 0);
+    ItemCreatorComponent = __decorate([
+        core_1.Component({
+            selector: 'item-creator',
+            templateUrl: './app/itemCreator.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], ItemCreatorComponent);
+    return ItemCreatorComponent;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.ItemCreatorComponent = ItemCreatorComponent;
+//# sourceMappingURL=itemCreator.component.js.map

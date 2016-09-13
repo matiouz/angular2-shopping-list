@@ -1,0 +1,9 @@
+<div>
+    <div>
+      <input id="newname" [(ngModel)]="newname" placeholder="new item name"/>
+      <select id="cat" [(ngModel)]="selectedCategory" required>
+        <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
+      </select>
+      <button (click)="addItem()">+</button>
+    </div>
+</div>

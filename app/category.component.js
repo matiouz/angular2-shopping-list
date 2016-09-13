@@ -9,24 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
-var app_component_1 = require('./app.component');
-var category_component_1 = require('./category.component');
-var item_component_1 = require('./item.component');
-var itemCreator_component_1 = require('./itemCreator.component');
-var AppModule = (function () {
-    function AppModule() {
+var category_1 = require('./category');
+var CategoryComponent = (function () {
+    function CategoryComponent() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, category_component_1.CategoryComponent, item_component_1.ItemComponent, itemCreator_component_1.ItemCreatorComponent],
-            bootstrap: [app_component_1.AppComponent]
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', category_1.Category)
+    ], CategoryComponent.prototype, "category", void 0);
+    CategoryComponent = __decorate([
+        core_1.Component({
+            selector: 'my-category',
+            templateUrl: './app/category.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], CategoryComponent);
+    return CategoryComponent;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.CategoryComponent = CategoryComponent;
+//# sourceMappingURL=category.component.js.map
