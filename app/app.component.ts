@@ -6,7 +6,6 @@ import { Item }   from './item';
   templateUrl:'./app/app.component.html' 
 })
 export class AppComponent {
-    public variable1 = "A string from app component"; 
 
     categories: Category[];
 

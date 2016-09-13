@@ -13,7 +13,6 @@ var category_1 = require('./category');
 var item_1 = require('./item');
 var AppComponent = (function () {
     function AppComponent() {
-        this.variable1 = "A string from app component";
         this.categories = [];
         var items1 = [new item_1.Item("item1"), new item_1.Item("item2")];
         var category1 = new category_1.Category("cat 1", items1);

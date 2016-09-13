@@ -1,8 +1,6 @@
-<h1>ng 2 List App</h1> 
-<h2>{{variable1}}</h2>
+<h1>List</h1> 
 <div *ngFor="let currentCategory of categories">
   <my-category [category]="currentCategory"></my-category>
 </div>
 <item-creator [categories]="categories"></item-creator>
 <category-creator [categories]="categories"></category-creator>
-<h2>another string from app component</h2>
