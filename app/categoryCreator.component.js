@@ -9,26 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var item_1 = require('./item');
-var ItemCreatorComponent = (function () {
-    function ItemCreatorComponent() {
+var category_1 = require('./category');
+var CategoryCreatorComponent = (function () {
+    function CategoryCreatorComponent() {
     }
-    ItemCreatorComponent.prototype.addItem = function (event) {
-        // TODO: handle case where no category is selected 
-        this.selectedCategory.items.push(new item_1.Item(this.newname));
+    CategoryCreatorComponent.prototype.addCategory = function (event) {
+        this.categories.push(new category_1.Category(this.newname));
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
-    ], ItemCreatorComponent.prototype, "categories", void 0);
-    ItemCreatorComponent = __decorate([
+    ], CategoryCreatorComponent.prototype, "categories", void 0);
+    CategoryCreatorComponent = __decorate([
         core_1.Component({
-            selector: 'item-creator',
-            templateUrl: './app/itemCreator.component.html'
+            selector: 'category-creator',
+            templateUrl: './app/categoryCreator.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], ItemCreatorComponent);
-    return ItemCreatorComponent;
+    ], CategoryCreatorComponent);
+    return CategoryCreatorComponent;
 }());
-exports.ItemCreatorComponent = ItemCreatorComponent;
-//# sourceMappingURL=itemCreator.component.js.map
+exports.CategoryCreatorComponent = CategoryCreatorComponent;
+//# sourceMappingURL=categoryCreator.component.js.map

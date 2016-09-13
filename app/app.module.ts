@@ -5,9 +5,10 @@ import { AppComponent }   from './app.component';
 import { CategoryComponent }   from './category.component';
 import { ItemComponent }   from './item.component';
 import { ItemCreatorComponent }   from './itemCreator.component';
+import { CategoryCreatorComponent }   from './categoryCreator.component';
 @NgModule({
   imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, CategoryComponent, ItemComponent, ItemCreatorComponent ],
+  declarations: [ AppComponent, CategoryComponent, ItemComponent, ItemCreatorComponent, CategoryCreatorComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

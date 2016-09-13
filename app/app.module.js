@@ -15,13 +15,14 @@ var app_component_1 = require('./app.component');
 var category_component_1 = require('./category.component');
 var item_component_1 = require('./item.component');
 var itemCreator_component_1 = require('./itemCreator.component');
+var categoryCreator_component_1 = require('./categoryCreator.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, category_component_1.CategoryComponent, item_component_1.ItemComponent, itemCreator_component_1.ItemCreatorComponent],
+            declarations: [app_component_1.AppComponent, category_component_1.CategoryComponent, item_component_1.ItemComponent, itemCreator_component_1.ItemCreatorComponent, categoryCreator_component_1.CategoryCreatorComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

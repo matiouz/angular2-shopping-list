@@ -17,6 +17,6 @@ export class ItemCreatorComponent {
 
     addItem(event){
         // TODO: handle case where no category is selected 
-        this.selectedCategory.items.push(new Item(newname.value));
+        this.selectedCategory.items.push(new Item(this.newname));
     }
 }

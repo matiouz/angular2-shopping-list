@@ -2,7 +2,12 @@
 var Category = (function () {
     function Category(name, items) {
         this.name = name;
-        this.items = items;
+        if (items == null) {
+            this.items = new Array();
+        }
+        else {
+            this.items = items;
+        }
     }
     return Category;
 }());
