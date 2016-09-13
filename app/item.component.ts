@@ -7,5 +7,19 @@ import { Item }   from './item';
 export class ItemComponent {
     @Input()
     item: Item; 
+
+    renameItem(event){
+      this.item.name = "renamed";
+    }
+
+    deleteItem(event){
+    }
+
+    moveItemUp(event){
+    }
+
+    moveItemDown(event){
+    }
+
  }
 

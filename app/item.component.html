@@ -3,8 +3,35 @@
     background-color: lavender;
     border: 1px solid thistle;
     padding: 2;
+    overflow:hidden; /* required because buttons are floating so without this, they flow out of the div */
   }
+
+  button{
+    float: right;
+    border:1px solid grey;
+    height:35px;
+    width:35px;
+    margin: 2px;
+  }
+
+  .itemName{
+    /* just to center vertically */
+    display:inline-block;
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
 </style>
-<div class="item">  
-    {{item.name}}
+<div class="item" >  
+  <span class="itemName">{{item.name}}</span>
+  <button (click)="renameItem()">✎</button>
+  <button (click)="deleteItem()">✗</button>
+  <button (click)="moveItemUp()">↑</button>
+  <button (click)="moveItemDown()">↓</button>
 </div>
+
+<!-- symbols:
+    http://htmlarrows.com/arrows/
+    http://www.webdesignerwall.com/demo/html-entities/
+    sync symbol: &#10226; -->

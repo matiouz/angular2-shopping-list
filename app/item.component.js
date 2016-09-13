@@ -13,6 +13,15 @@ var item_1 = require('./item');
 var ItemComponent = (function () {
     function ItemComponent() {
     }
+    ItemComponent.prototype.renameItem = function (event) {
+        this.item.name = "renamed";
+    };
+    ItemComponent.prototype.deleteItem = function (event) {
+    };
+    ItemComponent.prototype.moveItemUp = function (event) {
+    };
+    ItemComponent.prototype.moveItemDown = function (event) {
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', item_1.Item)
