@@ -9,24 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var category_1 = require('./category');
-var item_1 = require('./item');
+var mylist_service_1 = require('./mylist.service');
 var AppComponent = (function () {
-    function AppComponent() {
-        this.categories = [];
-        var items1 = [new item_1.Item("item1"), new item_1.Item("item2")];
-        var category1 = new category_1.Category("cat 1", items1);
-        var items2 = [new item_1.Item("item3"), new item_1.Item("item4")];
-        var category2 = new category_1.Category("cat 2", items2);
-        this.categories.push(category1);
-        this.categories.push(category2);
+    function AppComponent(myListService) {
+        this.myListService = myListService;
+        this.categories = myListService.getCategories();
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: './app/app.component.html'
+            templateUrl: './app/app.component.html',
+            providers: [mylist_service_1.MyListService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [mylist_service_1.MyListService])
     ], AppComponent);
     return AppComponent;
 }());

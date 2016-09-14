@@ -10,22 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var category_1 = require('./category');
+var mylist_service_1 = require('./mylist.service');
 var CategoryCreatorComponent = (function () {
-    function CategoryCreatorComponent() {
+    function CategoryCreatorComponent(myListService) {
+        this.myListService = myListService;
     }
     CategoryCreatorComponent.prototype.addCategory = function (event) {
-        this.categories.push(new category_1.Category(this.newname));
+        this.myListService.addCategory(new category_1.Category(this.newname));
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], CategoryCreatorComponent.prototype, "categories", void 0);
     CategoryCreatorComponent = __decorate([
         core_1.Component({
             selector: 'category-creator',
             templateUrl: './app/categoryCreator.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [mylist_service_1.MyListService])
     ], CategoryCreatorComponent);
     return CategoryCreatorComponent;
 }());

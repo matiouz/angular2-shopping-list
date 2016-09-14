@@ -10,23 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var item_1 = require('./item');
+var mylist_service_1 = require('./mylist.service');
 var ItemCreatorComponent = (function () {
-    function ItemCreatorComponent() {
+    function ItemCreatorComponent(myListService) {
+        this.myListService = myListService;
+        this.categories = this.myListService.getCategories();
     }
     ItemCreatorComponent.prototype.addItem = function (event) {
         // TODO: handle case where no category is selected 
-        this.selectedCategory.items.push(new item_1.Item(this.newname));
+        this.myListService.addItem(new item_1.Item(this.newname), this.selectedCategory);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], ItemCreatorComponent.prototype, "categories", void 0);
     ItemCreatorComponent = __decorate([
         core_1.Component({
             selector: 'item-creator',
             templateUrl: './app/itemCreator.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [mylist_service_1.MyListService])
     ], ItemCreatorComponent);
     return ItemCreatorComponent;
 }());

@@ -2,21 +2,23 @@ import { Component, Input } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { Category }   from './category';
 import { Item }   from './item';
+import { MyListService }   from './mylist.service';
 @Component({
   selector: 'item-creator',
   templateUrl:'./app/itemCreator.component.html' 
 })
 export class ItemCreatorComponent {
 
-    @Input()
     categories: Category[];
-    // TODO: categories devrait etre un service plutot qu'un parametre du composant
-
-    newname: string;
     selectedCategory: Category;
+    newname: string;
+
+    constructor(private myListService:MyListService) {
+        this.categories = this.myListService.getCategories();
+    }
 
     addItem(event){
         // TODO: handle case where no category is selected 
-        this.selectedCategory.items.push(new Item(this.newname));
+        this.myListService.addItem(new Item(this.newname), this.selectedCategory);
     }
 }

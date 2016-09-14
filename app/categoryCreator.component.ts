@@ -1,19 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { Category }   from './category';
+import { MyListService }   from './mylist.service';
 @Component({
   selector: 'category-creator',
-  templateUrl:'./app/categoryCreator.component.html' 
+  templateUrl:'./app/categoryCreator.component.html'
 })
 export class CategoryCreatorComponent {
 
-    @Input()
-    categories: Category[];
-    // TODO: categories devrait etre un service plutot qu'un parametre du composant
-
     newname: string;
+    constructor(private myListService:MyListService) {
+    }
 
     addCategory(event){
-        this.categories.push(new Category(this.newname));
+        this.myListService.addCategory(new Category(this.newname));
     }
 }
