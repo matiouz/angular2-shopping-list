@@ -37,6 +37,13 @@ export class MyListService {
     }
 
     deleteItem(item:Item){
+        for (var currentCategory of this.categories){
+            for (var i=0; i<currentCategory.items.length; i++){
+                if (currentCategory.items[i] == item){
+                    currentCategory.items.splice(i,1);
+                }
+            }
+        }
         // TODO
     }
 

@@ -10,13 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var item_1 = require('./item');
+var mylist_service_1 = require('./mylist.service');
 var ItemComponent = (function () {
-    function ItemComponent() {
+    function ItemComponent(myListService) {
+        this.myListService = myListService;
     }
     ItemComponent.prototype.renameItem = function (event) {
         this.item.name = "renamed";
     };
     ItemComponent.prototype.deleteItem = function (event) {
+        this.myListService.deleteItem(this.item);
     };
     ItemComponent.prototype.moveItemUp = function (event) {
     };
@@ -31,7 +34,7 @@ var ItemComponent = (function () {
             selector: 'my-item',
             templateUrl: './app/item.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [mylist_service_1.MyListService])
     ], ItemComponent);
     return ItemComponent;
 }());

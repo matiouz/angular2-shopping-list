@@ -40,6 +40,14 @@ var MyListService = (function () {
         // TODO
     };
     MyListService.prototype.deleteItem = function (item) {
+        for (var _i = 0, _a = this.categories; _i < _a.length; _i++) {
+            var currentCategory = _a[_i];
+            for (var i = 0; i < currentCategory.items.length; i++) {
+                if (currentCategory.items[i] == item) {
+                    currentCategory.items.splice(i, 1);
+                }
+            }
+        }
         // TODO
     };
     MyListService = __decorate([
