@@ -1,0 +1,13 @@
+TODO
+
+unify buttons style (buttons for add/remove categories and items)
+
+implement delete category
+
+implement reorder item / category
+
+implement rename item / category
+
+save list in local storage at each modification
+
+button to save list on server (would be better to sync, but requires keeping track of deltas)
