@@ -1,15 +1,38 @@
 <style>
   .category{
     background-color: lightsalmon;
-    //border: 1px solid red;
+    border: 1px solid red;
     border-radius: 5px;
     padding: 5;
     color: black;
     font-weight: bold;
+    padding: 2;
+    overflow:hidden; /* required because buttons are floating. So without this, they flow out of the div */
+  }
+
+  button{
+    float: right;
+    border:1px solid grey;
+    height:35px;
+    width:35px;
+    margin: 2px;
+  }
+
+  .categoryName{
+    /* just to center vertically */
+    display:inline-block;
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 </style>
+
 <div class="category">
-  {{category.name}}
+  <span class="categoryName">{{category.name}}</span>
+  <button (click)="renameCategory()">✎</button>
+  <button (click)="deleteCategory()">✗</button>
+  <button (click)="moveCategoryemUp()">↑</button>
+  <button (click)="moveCategoryDown()">↓</button>
 </div>
 <div *ngFor="let currentItem of category.items">
   <my-item [item]="currentItem"></my-item>

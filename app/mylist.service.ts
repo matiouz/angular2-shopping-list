@@ -29,22 +29,24 @@ export class MyListService {
     
     addCategory(category:Category){
         this.categories.push(category);
-        // TODO
     }
 
     deleteCategory(category:Category){
-        // TODO
+        for (var i=0; i < this.categories.length; i++){
+            if (this.categories[i] == category){
+                this.categories.splice(i,1);
+            }
+        }
     }
 
     deleteItem(item:Item){
         for (var currentCategory of this.categories){
-            for (var i=0; i<currentCategory.items.length; i++){
+            for (var i=0; i < currentCategory.items.length; i++){
                 if (currentCategory.items[i] == item){
                     currentCategory.items.splice(i,1);
                 }
             }
         }
-        // TODO
     }
 
 }
