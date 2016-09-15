@@ -18,5 +18,8 @@ app/main.js
 app/main.js.map
 app/mylist.service.js
 app/mylist.service.js.map
+app/toolbar.component.js.map
+toolbar.component.js
+toolbar.component.js.map
 node_modules
 

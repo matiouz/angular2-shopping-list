@@ -49,6 +49,23 @@ export class MyListService {
         }
     }
 
+    save(){
+        let categoriesAsString = JSON.stringify(this.categories);
+        localStorage.setItem("shoppingList", categoriesAsString);
+    }
+
+    load(){
+        let categoriesAsString = localStorage.getItem("shoppingList");
+        let loadedCategories = <Category[]>JSON.parse(categoriesAsString);
+        
+        // Clear the current list of categories content
+        this.categories.length = 0;
+
+        for (var currentCategory of loadedCategories){
+            this.categories.push(currentCategory);
+        }
+    }
+
 }
 
 // TODO: storage service example:
