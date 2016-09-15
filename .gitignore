@@ -18,4 +18,5 @@ app/main.js
 app/main.js.map
 app/mylist.service.js
 app/mylist.service.js.map
+node_modules
 
