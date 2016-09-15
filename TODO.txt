@@ -1,5 +1,7 @@
 TODO
 
+implement tests
+
 unify buttons style (buttons for add/remove categories and items)
 
 implement delete category
@@ -11,3 +13,13 @@ implement rename item / category
 save list in local storage at each modification
 
 button to save list on server (would be better to sync, but requires keeping track of deltas)
+
+button to toggle edition mode
+
+button to show/hide already bought items
+
+Make the web page work offline, using html5 cache manifest
+    http://www.html5rocks.com/en/tutorials/appcache/beginner/
+
+Create an android app using NativeScript
+
