@@ -12,10 +12,10 @@ export class CategoryComponent {
     constructor(private myListService:MyListService) {
     }
 
-    renameCategory(event){
-      this.category.name = "renamed";
-      // TODO
-    }
+    // renameCategory(event){
+    //   this.category.name = "renamed";
+    //   // TODO
+    // }
   
     deleteCategory(event){
       this.myListService.deleteCategory(this.category);

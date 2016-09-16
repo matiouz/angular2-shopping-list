@@ -32,12 +32,19 @@
 
 </style>
 <div class="item" >  
-  <span class="itemName">{{item.name}}</span>
+  
+  <span *ngIf="!myListService.isEditionMode" class="itemName">{{item.name}}</span>
+  <span *ngIf="myListService.isEditionMode" class="itemName">
+    <input [(ngModel)]="item.name" style="width:120"/>
+  </span>
+
   <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded"/>
-  <button (click)="renameItem()">✎</button>
-  <button (click)="deleteItem()">✗</button>
-  <button (click)="moveItemUp()">↑</button>
-  <button (click)="moveItemDown()">↓</button>
+  <span *ngIf="myListService.isEditionMode">
+    <!--button (click)="renameItem()">✎</button-->
+    <button (click)="deleteItem()">✗</button>
+    <button (click)="moveItemUp()">↑</button>
+    <button (click)="moveItemDown()">↓</button>
+  </span>
 </div>
 
 <!-- symbols:

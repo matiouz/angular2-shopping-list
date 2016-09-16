@@ -12,9 +12,9 @@ export class ItemComponent {
     constructor(private myListService:MyListService) {
     }
 
-    renameItem(event){
-      this.item.name = "renamed";
-    }
+    // renameItem(event){
+    //   this.item.name = "renamed";
+    // }
 
     deleteItem(event){
       this.myListService.deleteItem(this.item);

@@ -15,6 +15,8 @@
     <button (click)="loadList()">load</button>
     <label for="showNeededChk">show all</label>
     <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
+    <label for="editModeChk">edit mode</label>
+    <input id="editModeChk" type="checkbox" [(ngModel)]="myListService.isEditionMode"/>
     <item-creator></item-creator>
     <category-creator></category-creator>
 </div>
