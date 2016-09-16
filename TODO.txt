@@ -1,5 +1,7 @@
 TODO
 
+button to toggle edition mode
+
 implement tests
 
 unify buttons style (buttons for add/remove categories and items)
@@ -16,10 +18,15 @@ button to save list on server (would be better to sync, but requires keeping tra
 
 button to toggle edition mode
 
+button to mark/unmark item as already bought
+
 button to show/hide already bought items
 
 Make the web page work offline, using html5 cache manifest
     http://www.html5rocks.com/en/tutorials/appcache/beginner/
 
-Create an android app using NativeScript
+Create an android app using NativeScript or Ionic2
+May be possible without NativeScript, by using angular CLI only:
+    https://mobile.angular.io/
+    http://juristr.com/blog/2016/06/ng2-getting-started-for-beginners/
 

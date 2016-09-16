@@ -1,2 +1,18 @@
-<button (click)="saveList()">save</button>
-<button (click)="loadList()">load</button>
+<style>
+    .fixed-nav-bar {
+        position: fixed;
+        top: 0;
+        padding: 5px;
+        z-index: 9999;
+        width: 290px; /* TODO: unhardcode. For tests on desktop, width is hardcoded at same value as in index.html (+ 2x5 because of padding)  */
+        /*height: 50px;*/
+        background-color: #00a087;
+    }
+</style>
+
+<div class="fixed-nav-bar">
+    <button (click)="saveList()">save</button>
+    <button (click)="loadList()">load</button>
+    <item-creator></item-creator>
+    <category-creator></category-creator>
+</div>

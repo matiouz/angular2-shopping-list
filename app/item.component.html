@@ -22,9 +22,18 @@
     padding-bottom: 10px;
   }
 
+  #isNeededChk{
+    float: right;
+    border:1px solid grey;
+    height:35px;
+    width:35px;
+    margin: 2px;
+  }
+
 </style>
 <div class="item" >  
   <span class="itemName">{{item.name}}</span>
+  <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded"/>
   <button (click)="renameItem()">✎</button>
   <button (click)="deleteItem()">✗</button>
   <button (click)="moveItemUp()">↑</button>

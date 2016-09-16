@@ -1,7 +1,6 @@
-<h1>List</h1> 
+<div style="height:55px;"> <!-- TODO: find cleaner solution. For now, hardcoded to avoid having the menu over the first category -->
+</div>
 <div *ngFor="let currentCategory of categories">
   <my-category [category]="currentCategory"></my-category>
 </div>
-<item-creator></item-creator>
-<category-creator></category-creator>
 <toolbar></toolbar>
