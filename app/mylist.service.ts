@@ -10,6 +10,10 @@ export class MyListService {
     
     categories: Category[];
 
+    // Global settings. Since it's only 2 properties, we leave them in this service 
+    isEditionMode: boolean = true;
+    isDisplayNotNeededItems: boolean = true;
+
     getCategories(): Category[] {
         if (this.categories == null){
             this.categories = [];

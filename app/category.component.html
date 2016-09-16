@@ -35,5 +35,5 @@
   <button (click)="moveCategoryDown()">↓</button>
 </div>
 <div *ngFor="let currentItem of category.items">
-  <my-item [item]="currentItem"></my-item>
+  <my-item *ngIf="currentItem.isNeeded || myListService.isDisplayNotNeededItems" [item]="currentItem"></my-item>
 </div>

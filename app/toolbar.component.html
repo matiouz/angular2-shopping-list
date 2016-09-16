@@ -6,13 +6,15 @@
         z-index: 9999;
         width: 290px; /* TODO: unhardcode. For tests on desktop, width is hardcoded at same value as in index.html (+ 2x5 because of padding)  */
         /*height: 50px;*/
-        background-color: #00a087;
+        background-color: black;
     }
 </style>
 
 <div class="fixed-nav-bar">
     <button (click)="saveList()">save</button>
     <button (click)="loadList()">load</button>
+    <label for="showNeededChk">show all</label>
+    <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
     <item-creator></item-creator>
     <category-creator></category-creator>
 </div>
