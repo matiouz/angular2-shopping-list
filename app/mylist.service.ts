@@ -48,7 +48,52 @@ export class MyListService {
             for (var i=0; i < currentCategory.items.length; i++){
                 if (currentCategory.items[i] == item){
                     currentCategory.items.splice(i,1);
+                    break;
                 }
+            }
+        }
+    }
+
+    moveItemUp(item:Item){      // TODO: behaviour is not satisfying if already bought items are not displayed
+        for (var currentCategory of this.categories){
+            for (var i=1; i < currentCategory.items.length; i++){       // No need to run the loop on the first item because the first item cannot be moved up
+                if (currentCategory.items[i] == item){
+                    currentCategory.items[i] = currentCategory.items[i-1];
+                    currentCategory.items[i-1] = item;
+                    break;
+                }
+            }
+        }
+    }
+
+    moveItemDown(item:Item){    // TODO: behaviour is not satisfying if already bought items are not displayed 
+        for (var currentCategory of this.categories){
+            for (var i=0; i < currentCategory.items.length - 1; i++){   // No need to run the loop on the last item because the last item cannot be moved down
+                if (currentCategory.items[i] == item){
+                    currentCategory.items[i] = currentCategory.items[i+1];
+                    currentCategory.items[i+1] = item;
+                    break; 
+                }
+            }
+        }
+    }
+
+    moveCategoryUp(category:Category){
+        for (var i=1; i < this.categories.length; i++){ // No need to run loop on fist category because it cannot be moved up
+            if (this.categories[i] == category){
+                this.categories[i] = this.categories[i-1];
+                this.categories[i-1] = category;
+                break;
+            }
+        }
+    }
+
+    moveCategoryDown(category:Category){
+        for (var i=0; i < this.categories.length-1; i++){ // No need to run loop on last category because it cannot be moved down
+            if (this.categories[i] == category){
+                this.categories[i] = this.categories[i+1];
+                this.categories[i+1] = category;
+                break;
             }
         }
     }

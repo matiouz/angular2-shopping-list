@@ -21,12 +21,12 @@ export class CategoryComponent {
       this.myListService.deleteCategory(this.category);
     }
 
-    moveCategoryemUp(event){
-      // TODO
+    moveCategoryUp(event){
+      this.myListService.moveCategoryUp(this.category);
     }
 
     moveCategoryDown(event){
-      // TODO
+      this.myListService.moveCategoryDown(this.category);
     }
 }
 

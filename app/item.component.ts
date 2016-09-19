@@ -21,9 +21,11 @@ export class ItemComponent {
     }
 
     moveItemUp(event){
+      this.myListService.moveItemUp(this.item);
     }
 
     moveItemDown(event){
+      this.myListService.moveItemDown(this.item);
     }
 
  }
