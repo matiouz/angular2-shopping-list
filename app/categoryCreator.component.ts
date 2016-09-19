@@ -8,11 +8,12 @@ import { MyListService }   from './mylist.service';
 })
 export class CategoryCreatorComponent {
 
-    newname: string;
+    name: string;
     constructor(private myListService:MyListService) {
     }
 
     addCategory(event){
-        this.myListService.addCategory(new Category(this.newname));
+        this.myListService.addCategory(new Category(this.name));
+        this.name = "";
     }
 }
