@@ -1,7 +1,7 @@
 <div>
     <div>
       <input id="name" [(ngModel)]="name" placeholder="new item name"/>
-      <select id="cat" [(ngModel)]="selectedCategory" required>
+      <select id="cat" [(ngModel)]="selectedCategory" style="max-width: 60px;" required>
         <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
       </select>
       <button (click)="addItem()">+</button>
