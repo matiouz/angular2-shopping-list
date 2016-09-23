@@ -1,33 +1,45 @@
 <style>
-    .fixed-nav-bar {
+    .fixed-toolbar {
         position: fixed;
         top: 0;
-        padding: 5px;
+        padding: 2px;
         z-index: 9999;
-        width: 290px; /* TODO: unhardcode. For tests on desktop, width is hardcoded at same value as in index.html (+ 2x5 because of padding)  */
+        width: 296px; /* TODO: unhardcode. For tests on desktop, width is hardcoded at same value as in index.html (- 2x3 because of padding)  */
         /*height: 50px;*/
         background-color: black;
+    }
+
+    .main-buttons-bar{
+        padding: 3px;
+        background-color: blue;
+    }
+
+    .creator{
+        padding: 3px;
+        background-color: red;
     }
 </style>
 
 
 <!-- Empty div that take the same height as the toolbar. Since the toolbar is fixed at the top, it is displayed over the rest, so we need to push down the first category
 The height of this div varies based on the content of the toolbar (edition mode or not) -->
-<div *ngIf="myListService.isEditionMode" style="height:55px;"> 
+<div *ngIf="myListService.isEditionMode" style="height:60px;"> 
 </div>
 <div *ngIf="!myListService.isEditionMode" style="height:4px;"> 
 </div>
 
 
-<div class="fixed-nav-bar">
-    <button (click)="saveList()">save</button>
-    <button (click)="loadList()">load</button>
-    <label for="showNeededChk">show all</label>
-    <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
-    <label for="editModeChk">edit mode</label>
-    <input id="editModeChk" type="checkbox" [(ngModel)]="myListService.isEditionMode"/>
-    <div>
-    <item-creator *ngIf="myListService.isEditionMode" ></item-creator>
-    <category-creator *ngIf="myListService.isEditionMode" ></category-creator>
+<div class="fixed-toolbar">
+    <div class="main-buttons-bar">
+        <button (click)="saveList()">save</button>
+        <button (click)="loadList()">load</button>
+        <label for="showNeededChk">show all</label>
+        <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
+        <label for="editModeChk">edit mode</label>
+        <input id="editModeChk" type="checkbox" [(ngModel)]="myListService.isEditionMode"/>
+    </div>
+    <div class="creator" *ngIf="myListService.isEditionMode">
+        <item-creator></item-creator>
+        <category-creator></category-creator>
     </div>
 </div>
