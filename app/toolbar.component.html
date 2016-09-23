@@ -10,6 +10,15 @@
     }
 </style>
 
+
+<!-- Empty div that take the same height as the toolbar. Since the toolbar is fixed at the top, it is displayed over the rest, so we need to push down the first category
+The height of this div varies based on the content of the toolbar (edition mode or not) -->
+<div *ngIf="myListService.isEditionMode" style="height:55px;"> 
+</div>
+<div *ngIf="!myListService.isEditionMode" style="height:4px;"> 
+</div>
+
+
 <div class="fixed-nav-bar">
     <button (click)="saveList()">save</button>
     <button (click)="loadList()">load</button>
@@ -17,6 +26,8 @@
     <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
     <label for="editModeChk">edit mode</label>
     <input id="editModeChk" type="checkbox" [(ngModel)]="myListService.isEditionMode"/>
-    <item-creator></item-creator>
-    <category-creator></category-creator>
+    <div>
+    <item-creator *ngIf="myListService.isEditionMode" ></item-creator>
+    <category-creator *ngIf="myListService.isEditionMode" ></category-creator>
+    </div>
 </div>
