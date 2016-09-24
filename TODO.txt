@@ -12,6 +12,12 @@ button to save list on server (would be better to sync, but requires keeping tra
 
 Make the web page work offline, using html5 cache manifest
     http://www.html5rocks.com/en/tutorials/appcache/beginner/
+
+    It requires to run without browser sync. For this:
+
+    install serve:
+        npm install --save serve
+
     in package.json, replace 
         "lite": "lite-server"
     with 
@@ -21,8 +27,9 @@ Make the web page work offline, using html5 cache manifest
         npm run serve
     run
         npm start
-    requires to install serve:
-        npm install --save serve
+    
+    To clear cached applications on chrome:
+        chrome://appcache-internals/
 
 
 Create an android app using NativeScript or Ionic2
