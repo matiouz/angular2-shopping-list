@@ -17,12 +17,14 @@ export class MyListService {
     getCategories(): Category[] {
         if (this.categories == null){
             this.categories = [];
-            let items1 = [ new Item("item1"), new Item("item2")];
-            let category1 = new Category("cat 1", items1);
-            let items2 = [ new Item("item3"), new Item("item4"), new Item("item5")];
-            let category2 = new Category("cat 2", items2);
-            this.categories.push(category1);
-            this.categories.push(category2);
+            this.load();
+        // Create hardcoded list, for debugging:
+        //     let items1 = [ new Item("item1"), new Item("item2")];
+        //     let category1 = new Category("cat 1", items1);
+        //     let items2 = [ new Item("item3"), new Item("item4"), new Item("item5")];
+        //     let category2 = new Category("cat 2", items2);
+        //     this.categories.push(category1);
+        //     this.categories.push(category2);
         }
       return this.categories;
     }
@@ -105,13 +107,16 @@ export class MyListService {
 
     load(){
         let categoriesAsString = localStorage.getItem("shoppingList");
-        let loadedCategories = <Category[]>JSON.parse(categoriesAsString);
         
-        // Clear the current list of categories content
-        this.categories.length = 0;
+        if (categoriesAsString != null){
+            let loadedCategories = <Category[]>JSON.parse(categoriesAsString);
+        
+            // Clear the current list of categories content
+            this.categories.length = 0;
 
-        for (var currentCategory of loadedCategories){
-            this.categories.push(currentCategory);
+            for (var currentCategory of loadedCategories){
+                this.categories.push(currentCategory);
+            }
         }
     }
 
