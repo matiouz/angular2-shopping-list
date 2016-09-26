@@ -6,8 +6,6 @@ unify buttons style (buttons for add/remove categories and items)
 
 implement reorder item / category using drag and drop
 
-save list in local storage at each modification
-
 button to save list on server (would be better to sync, but requires keeping track of deltas)
 
 Make the web page work offline, using html5 cache manifest

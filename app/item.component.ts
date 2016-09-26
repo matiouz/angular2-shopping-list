@@ -16,6 +16,10 @@ export class ItemComponent {
     //   this.item.name = "renamed";
     // }
 
+    saveItem(){
+      this.myListService.saveItem(this.item);
+    }
+
     deleteItem(event){
       this.myListService.deleteItem(this.item);
     }

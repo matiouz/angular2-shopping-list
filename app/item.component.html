@@ -37,7 +37,7 @@
   
   <span *ngIf="!myListService.isEditionMode" class="itemName">{{item.name}}</span>
   <span *ngIf="myListService.isEditionMode" class="itemName">
-    <input [(ngModel)]="item.name" style="width:120"/>
+    <input [(ngModel)]="item.name" (blur)="saveItem()" style="width:120"/>
   </span>
 
   <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded"/>

@@ -32,7 +32,7 @@
 
   <span *ngIf="!myListService.isEditionMode" class="categoryName">{{category.name}}</span>
   <span *ngIf="myListService.isEditionMode" class="categoryName">
-    <input [(ngModel)]="category.name" style="width:120"/>
+    <input [(ngModel)]="category.name" (blur)="saveCategory()" style="width:120"/>
   </span>
 
   <span *ngIf="myListService.isEditionMode">

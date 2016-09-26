@@ -14,6 +14,7 @@ export class MyListService {
     isEditionMode: boolean = false;
     isDisplayNotNeededItems: boolean = true;
 
+
     getCategories(): Category[] {
         if (this.categories == null){
             this.categories = [];
@@ -31,10 +32,22 @@ export class MyListService {
 
     addItem(item:Item, category:Category){
         category.items.push(item);
+        this.save();
     }
     
+    saveItem(item:Item){
+        // Since the the model is bound to the fields, no need to do anything except saving the whole list 
+        this.save();
+    }
+
+    saveCategory(category:Category){
+        // Since the the model is bound to the fields, no need to do anything except saving the whole list 
+        this.save();
+    }
+
     addCategory(category:Category){
         this.categories.push(category);
+        this.save();
     }
 
     deleteCategory(category:Category){
@@ -43,6 +56,7 @@ export class MyListService {
                 this.categories.splice(i,1);
             }
         }
+        this.save();
     }
 
     deleteItem(item:Item){
@@ -54,6 +68,7 @@ export class MyListService {
                 }
             }
         }
+        this.save();
     }
 
     moveItemUp(item:Item){      // TODO: behaviour is not satisfying if already bought items are not displayed
@@ -66,6 +81,7 @@ export class MyListService {
                 }
             }
         }
+        this.save();
     }
 
     moveItemDown(item:Item){    // TODO: behaviour is not satisfying if already bought items are not displayed 
@@ -78,6 +94,7 @@ export class MyListService {
                 }
             }
         }
+        this.save();
     }
 
     moveCategoryUp(category:Category){
@@ -88,6 +105,7 @@ export class MyListService {
                 break;
             }
         }
+        this.save();
     }
 
     moveCategoryDown(category:Category){
@@ -98,6 +116,7 @@ export class MyListService {
                 break;
             }
         }
+        this.save();
     }
 
     save(){

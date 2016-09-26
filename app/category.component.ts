@@ -16,7 +16,11 @@ export class CategoryComponent {
     //   this.category.name = "renamed";
     //   // TODO
     // }
-  
+
+    saveCategory(){
+      this.myListService.saveCategory(this.item);
+    }
+
     deleteCategory(event){
       this.myListService.deleteCategory(this.category);
     }
