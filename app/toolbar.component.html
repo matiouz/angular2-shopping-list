@@ -2,10 +2,10 @@
     .fixed-toolbar {
         position: fixed;
         top: 0;
+        left:0;
         padding: 2px;
         z-index: 9999;
-        width: 296px; /* TODO: unhardcode. For tests on desktop, width is hardcoded at same value as in index.html (- 2x3 because of padding)  */
-        /*height: 50px;*/
+        width: 99%;
         background-color: #FF9800;
         border-radius: 5px;
         color:whitesmoke;
@@ -14,6 +14,11 @@
     .main-buttons-bar{
         padding: 3px;
         background-color: #FF9800;
+        height: 25px;   /*give a hardcoded height because save/load buttons are floating, so their height is ignored when determining this div height */ 
+    }
+
+     .save-load{
+        float: right;
     }
 
     .creator{
@@ -34,12 +39,14 @@ The height of this div varies based on the content of the toolbar (edition mode 
 
 <div class="fixed-toolbar">
     <div class="main-buttons-bar">
-        <button (click)="saveList()">save</button>
-        <button (click)="loadList()">load</button>
         <label for="showNeededChk">show all</label>
         <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
         <label for="editModeChk">edit mode</label>
         <input id="editModeChk" type="checkbox" [(ngModel)]="myListService.isEditionMode"/>
+        <div class="save-load">
+            <button (click)="saveList()">save</button>
+            <button (click)="loadList()">load</button>
+        </div>
     </div>
     <div class="creator" *ngIf="myListService.isEditionMode">
         <item-creator></item-creator>
