@@ -18,7 +18,7 @@ export class CategoryComponent {
     // }
 
     saveCategory(){
-      this.myListService.saveCategory(this.item);
+      this.myListService.saveCategory(this.category);
     }
 
     deleteCategory(event){
