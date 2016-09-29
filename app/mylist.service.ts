@@ -120,7 +120,7 @@ export class MyListService {
     }
 
     save(){
-        let categoriesAsString = JSON.stringify(this.categories, ['name', 'items', 'isNeeded'], 2);
+        let categoriesAsString = this.serializeCategories();
         localStorage.setItem("shoppingList", categoriesAsString);
     }
 
@@ -128,15 +128,31 @@ export class MyListService {
         let categoriesAsString = localStorage.getItem("shoppingList");
         
         if (categoriesAsString != null){
-            let loadedCategories = <Category[]>JSON.parse(categoriesAsString);
-        
-            // Clear the current list of categories content
-            this.categories.length = 0;
-
-            for (var currentCategory of loadedCategories){
-                this.categories.push(currentCategory);
-            }
+            this.deserializeCategories(categoriesAsString);
         }
+    }
+
+    serializeCategories(): string{
+        return JSON.stringify(this.categories, ['name', 'items', 'isNeeded'], 2);
+    }
+
+    deserializeCategories(serializedCategories:string){
+        let loadedCategories = <Category[]>JSON.parse(serializedCategories);
+        
+        // Clear the current list of categories content
+        this.categories.length = 0;
+
+        for (var currentCategory of loadedCategories){
+            this.categories.push(currentCategory);
+        }
+    }
+
+    saveOnServer(){
+
+    }
+
+    loadFromServer(){
+
     }
 
 }
