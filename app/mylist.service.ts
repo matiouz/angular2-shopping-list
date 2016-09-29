@@ -120,7 +120,7 @@ export class MyListService {
     }
 
     save(){
-        let categoriesAsString = JSON.stringify(this.categories);
+        let categoriesAsString = JSON.stringify(this.categories, ['name', 'items', 'isNeeded'], 2);
         localStorage.setItem("shoppingList", categoriesAsString);
     }
 
