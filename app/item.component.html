@@ -40,7 +40,7 @@
     <input [(ngModel)]="item.name" (blur)="saveItem()" style="width:120"/>
   </span>
 
-  <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded"/>
+  <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded" (ngModelChange)="saveItem()"/>
   <span *ngIf="myListService.isEditionMode">
     <!--button (click)="renameItem()">✎</button-->
     <button (click)="deleteItem()">✗</button>
