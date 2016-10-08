@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Category }   from './category';
 import { Item }   from './item';
+import { Http, Response } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 // Note: this service provides the categories/items to all the components.
 // They are provided directly as an array of categories that is shared between all components, so that the binding keeps on working
@@ -14,6 +18,21 @@ export class MyListService {
     isEditionMode: boolean = false;
     isDisplayNotNeededItems: boolean = true;
 
+    listURL: string = "http://142.3.32.98:3002/lists/list1.json";
+
+
+    // Observable categories source
+    private categoriesSource = new Subject<Category[]>();
+
+    // Observable categories stream
+    categoriesStream = this.categoriesSource.asObservable();
+
+    // Notify observers that the list of categories is a new one (it points to a new array)
+    notifyCategoriesChange(){
+        this.categoriesSource.next(this.categories);
+    }
+
+    constructor(private http: Http){}
 
     getCategories(): Category[] {
         if (this.categories == null){
@@ -139,19 +158,34 @@ export class MyListService {
     deserializeCategories(serializedCategories:string){
         let loadedCategories = <Category[]>JSON.parse(serializedCategories);
         
-        // Clear the current list of categories content
-        this.categories.length = 0;
+        this.categories = loadedCategories;
+        this.notifyCategoriesChange();
 
-        for (var currentCategory of loadedCategories){
-            this.categories.push(currentCategory);
-        }
+        // // Clear the current list of categories content
+        // this.categories.length = 0;
+
+        // for (var currentCategory of loadedCategories){
+        //     this.categories.push(currentCategory);
+        // }
     }
 
+    // See https://angular.io/docs/ts/latest/guide/server-communication.html
     saveOnServer(){
+
 
     }
 
     loadFromServer(){
+        // this.http.get(this.listURL)
+        // .map(this.handleResponse)
+        // .catch(this.handleError);
+        let myObservable = this.http.get('this.listURL').map((res:Response) => res.json());// -> returns an observable, now we need to
+        myObservable.subscribe(
+            serverCategories => {
+                this.categories = serverCategories;
+                this.notifyCategoriesChange();
+            }
+        );
 
     }
 

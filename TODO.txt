@@ -7,6 +7,28 @@ unify buttons style (buttons for add/remove categories and items)
 implement reorder item / category using drag and drop
 
 button to save list on server (would be better to sync, but requires keeping track of deltas)
+for this:
+    mylist.service.ts: 
+        getCategories() must return an observable<Category[]>
+        when loading from localstorage or from web service, mylist.service will emit a new Category[] on this observable
+        for the web service, a get also returns an observable. We only use this observable inside mylist.service: we get the data from this observable and emit a new Category[] on the other observable 
+        see (especially last answer comment): http://stackoverflow.com/questions/35992877/angular-2-best-practice-to-load-data-from-a-server-one-time-and-share-results-t 
+
+    app.component.ts: 
+        must subscribe to this observable and set this.categories = value emitted by the event -> the display will be refreshed with the emitted list.
+
+    Not directly related to save/load on server, but to spread the usage of Observable, in itemCreator / categoryCreator:
+        see if we can create an observable that will emit an event each time we create/modify/delete an item/category -> the service will listen to this and save, instead of having to call save explicitely
+        an alternative migth be to use the angular2 change detection mechanism: 
+            It can call lifecycle hooks when data change: ngOnChanges (for primitive types) or ngDoCheck (for objects and arrays)
+            It allows to customize checks of a component to see whether its Inputs have changed. 
+            In our case, we want the service to listen to model changes initiated by components. This would be a different mechanism 
+
+how to develop services in angular2:
+    http://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
+    http://www.metaltoad.com/blog/angular-2-http-writing-data
+    https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#bidirectional-service
+    
 
 Make the web page work offline, using html5 cache manifest
     http://www.html5rocks.com/en/tutorials/appcache/beginner/
