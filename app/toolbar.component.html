@@ -14,7 +14,7 @@
     .main-buttons-bar{
         padding: 3px;
         background-color: #FF9800;
-        height: 25px;   /*give a hardcoded height because save/load buttons are floating, so their height is ignored when determining this div height */ 
+        height: 35px;   /*give a hardcoded height because save/load buttons are floating, so their height is ignored when determining this div height */ 
     }
 
      .save-load{
@@ -26,6 +26,25 @@
         background-color: white;
         border-radius: 5px;
     }
+
+    .my-checkbox{
+        border:1px solid grey;
+        height:30px;
+        width:30px;
+    }
+
+  .my-label{
+    /* just to center vertically */
+        position: relative;
+        bottom: 10px;
+  }
+
+   .my-button{
+        height:35px;
+        margin:0;
+    }
+
+
 </style>
 
 
@@ -39,13 +58,13 @@ The height of this div varies based on the content of the toolbar (edition mode 
 
 <div class="fixed-toolbar">
     <div class="main-buttons-bar">
-        <label for="showNeededChk">show all</label>
-        <input id="showNeededChk" type="checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
-        <label for="editModeChk">edit mode</label>
-        <input id="editModeChk" type="checkbox" [(ngModel)]="myListService.isEditionMode"/>
+        <label class="my-label" for="showNeededChk">show all</label>
+        <input id="showNeededChk" type="checkbox" class="my-checkbox" [(ngModel)]="myListService.isDisplayNotNeededItems"/>
+        <label class="my-label" for="editModeChk">edit mode</label>
+        <input id="editModeChk" type="checkbox" class="my-checkbox" [(ngModel)]="myListService.isEditionMode"/>
         <div class="save-load">
-            <button (click)="saveList()">save</button>
-            <button (click)="loadList()">load</button>
+            <button class="my-button" (click)="saveList()">save</button>
+            <button class="my-button" (click)="loadList()">load</button>
         </div>
     </div>
     <div class="creator" *ngIf="myListService.isEditionMode">
