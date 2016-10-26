@@ -1,0 +1,42 @@
+[
+      {
+      "name": "cremerie",
+      "items":       [
+                  {
+            "name": "lait",
+            "isNeeded": true
+         },
+                  {
+            "name": "fromage",
+            "isNeeded": true
+         }
+      ]
+   },
+      {
+      "name": "viande",
+      "items": [      {
+         "name": "poult ca",
+         "isNeeded": false
+      }]
+   },
+      {
+      "name": "fruits",
+      "items": [      {
+         "name": "pommes",
+         "isNeeded": true
+      }]
+   },
+      {
+      "name": "cat2",
+      "items":       [
+                  {
+            "name": "aaaa",
+            "isNeeded": true
+         },
+                  {
+            "name": "bbbb",
+            "isNeeded": true
+         }
+      ]
+   }
+]
