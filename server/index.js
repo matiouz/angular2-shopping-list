@@ -45,7 +45,8 @@ server.on('request', function (request, response) {
 
 
 	response.setHeader("Content-Type", "text/javascript");
-
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	
 	var splitURL = reqURL.pathname.split("/");
 	if (splitURL[0] === "" && splitURL[1] === "lists" && splitURL.length === 3) {
 		var resourceId = splitURL[2];

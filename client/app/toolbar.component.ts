@@ -15,7 +15,7 @@ export class ToolbarComponent {
 
     loadList(){
         if (confirm("Reload list: unsaved modifications will be lost. Continue?")){
-            this.myListService.load();
+            this.myListService.loadFromServer();
         }
     }
 

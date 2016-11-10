@@ -179,7 +179,7 @@ export class MyListService {
         // this.http.get(this.listURL)
         // .map(this.handleResponse)
         // .catch(this.handleError);
-        let myObservable = this.http.get('this.listURL').map((res:Response) => res.json());// -> returns an observable, now we need to
+        let myObservable = this.http.get(this.listURL).map((res:Response) => res.json());// -> returns an observable, now we need to
         myObservable.subscribe(
             serverCategories => {
                 this.categories = serverCategories;
