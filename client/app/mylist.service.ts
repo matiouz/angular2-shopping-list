@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Category }   from './category';
 import { Item }   from './item';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -172,15 +172,55 @@ export class MyListService {
     // See https://angular.io/docs/ts/latest/guide/server-communication.html
     saveOnServer(){
 
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        
+        // observableResponse is of type Observable<boolean>, because this is what is returned by extractData
+        // Note: Since it's a post request with content-type = application/json, 
+        // before the POST request, angular will automatically send and OPTIONS request
+        let observableRequest = this.http.post(this.listURL, this.categories, options)
+                .map(this.extractData)
+                .catch(this.handleError);
 
+        // TODO: replace these event handlers with a user friendly popup (it's the calling component that should subscribe and define the handlers)
+        observableRequest.subscribe(
+                     returnCode => console.log("Successful save, code " + returnCode),
+                     error => console.log("Error when saving: " + error));
     }
+
+    extractData(res: Response){
+        // Commented out code, in case we want to extract the content of the response and return it (and this content is of type Categories)
+        // (in this case, the reponse to http.post would be of type Observable<Categories>()) 
+        //let body = res._body;
+        //return body.data || { }; 
+
+        // For now, simply return true if request successful, else false    
+        let status = res.status;
+        return res.status === 200;
+    }
+
+    private handleError (error: Response | any) {
+        // In a real world app, we might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable.throw(errMsg);
+}
 
     loadFromServer(){
         // this.http.get(this.listURL)
         // .map(this.handleResponse)
         // .catch(this.handleError);
-        let myObservable = this.http.get(this.listURL).map((res:Response) => res.json());// -> returns an observable, now we need to
-        myObservable.subscribe(
+        let observableRequest = this.http.get(this.listURL)
+                .map((res:Response) => res.json());// -> returns an observable, now we need to
+
+        observableRequest.subscribe(
             serverCategories => {
                 this.categories = serverCategories;
                 this.notifyCategoriesChange();

@@ -10,7 +10,7 @@ export class ToolbarComponent {
     }
 
     saveList(){
-        this.myListService.save();
+        this.myListService.saveOnServer();
     }
 
     loadList(){
