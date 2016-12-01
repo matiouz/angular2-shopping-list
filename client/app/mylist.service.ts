@@ -3,8 +3,10 @@ import { Category }   from './category';
 import { Item }   from './item';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 // Note: this service provides the categories/items to all the components.
 // They are provided directly as an array of categories that is shared between all components, so that the binding keeps on working
@@ -179,16 +181,16 @@ export class MyListService {
         // Note: Since it's a post request with content-type = application/json, 
         // before the POST request, angular will automatically send and OPTIONS request
         let observableRequest = this.http.post(this.listURL, this.categories, options)
-                .map(this.extractData)
+                .map(this.extractPOSTData)
                 .catch(this.handleError);
 
         // TODO: replace these event handlers with a user friendly popup (it's the calling component that should subscribe and define the handlers)
         observableRequest.subscribe(
                      returnCode => console.log("Successful save, code " + returnCode),
-                     error => console.log("Error when saving: " + error));
+                     error => console.log("Error when saving list on server: " + error));
     }
 
-    extractData(res: Response){
+    extractPOSTData(res: Response){
         // Commented out code, in case we want to extract the content of the response and return it (and this content is of type Categories)
         // (in this case, the reponse to http.post would be of type Observable<Categories>()) 
         //let body = res._body;
@@ -209,26 +211,24 @@ export class MyListService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        console.error(errMsg);
+        console.error("Error when sending request: " + errMsg);
         return Observable.throw(errMsg);
-}
+    }
 
     loadFromServer(){
-        // this.http.get(this.listURL)
-        // .map(this.handleResponse)
-        // .catch(this.handleError);
         let observableRequest = this.http.get(this.listURL)
-                .map((res:Response) => res.json());// -> returns an observable, now we need to
+                .map((res:Response) => res.json())
+                .catch(this.handleError);
 
+        // TODO: replace error handler with a user friendly popup (it's the calling component that should subscribe and define the handlers)
         observableRequest.subscribe(
             serverCategories => {
                 this.categories = serverCategories;
                 this.notifyCategoriesChange();
-            }
+            },
+            error => console.log("Error when loading list from server: " + error)
         );
-
     }
-
 }
 
 // TODO: storage service example:
