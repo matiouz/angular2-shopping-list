@@ -55,6 +55,8 @@ server.on('request', function (request, response) {
 			handleGet(resourceId, response);
 		} else if (request.method == 'POST') {
 			handlePost(request, response, resourceId);
+		} else if (request.method == 'OPTIONS') {
+			handleOptions(request, response, resourceId);
 		} else {
 			response.statusCode = HTTP_METHOD_NOT_ALLOWED;
 			response.end();
@@ -92,15 +94,28 @@ function handlePost(request, response, resourceId) {
 
 		fs.writeFile(filePath, data, function (err) {
 			// TODO: error handling has not been tested, not sure it would work correctly
-			if (err) return console.log(err);
-			console.log('Error trying to save file ' + filePath);
-			response.statusCode = HTTP_INTERNAL_SERVER_ERROR;
+			if (err) {
+				console.log('Error at trying to save file ' + filePath);	
+				return console.log(err);
+			} else {
+				console.log('File successfully saved ' + filePath);
+				response.statusCode = HTTP_CREATED;
+			}
 		});
 
-		response.statusCode = HTTP_CREATED;
 		response.end();
 	});
 }
+
+function handleOptions(request, response, resourceId) {
+	response.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
+	response.setHeader('Access-Control-Allow-Methods', '*');
+	response.setHeader('Access-Control-Expose-Headers', 'X-Api-Version, X-Request-Id, X-Response-Time');
+	response.setHeader('Access-Control-Max-Age', '1000');
+	response.statusCode = HTTP_OK;
+	response.end();
+}
+
 
 server.listen(portNr, function () {
 	console.log('listening on port ' + portNr)
