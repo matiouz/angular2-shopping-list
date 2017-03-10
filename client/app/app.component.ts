@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
       )
 
       // Initially, the service loads from the localStorage
-      this.myListService.load();
+      this.myListService.loadFromLocalStorage();
     }
  }
 

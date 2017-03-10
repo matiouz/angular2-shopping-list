@@ -20,8 +20,8 @@ export class MyListService {
     isEditionMode: boolean = false;
     isDisplayNotNeededItems: boolean = true;
 
-    listURL: string = "http://142.3.32.98:3002/lists/list1.json";
-
+    listURL: string = "http://localhost:3002/lists/list1.json";
+    // listURL: string = "http://142.3.32.98:3002/lists/list1.json";
 
     // Observable categories source
     private categoriesSource = new Subject<Category[]>();
@@ -39,7 +39,7 @@ export class MyListService {
     getCategories(): Category[] {
         if (this.categories == null){
             this.categories = [];
-            this.load();
+            this.loadFromLocalStorage();
         // Create hardcoded list, for debugging:
         //     let items1 = [ new Item("item1"), new Item("item2")];
         //     let category1 = new Category("cat 1", items1);
@@ -53,22 +53,22 @@ export class MyListService {
 
     addItem(item:Item, category:Category){
         category.items.push(item);
-        this.save();
+        this.saveToLocalStorage();
     }
     
     saveItem(item:Item){
         // Since the the model is bound to the fields, no need to do anything except saving the whole list 
-        this.save();
+        this.saveToLocalStorage();
     }
 
     saveCategory(category:Category){
         // Since the the model is bound to the fields, no need to do anything except saving the whole list 
-        this.save();
+        this.saveToLocalStorage();
     }
 
     addCategory(category:Category){
         this.categories.push(category);
-        this.save();
+        this.saveToLocalStorage();
     }
 
     deleteCategory(category:Category){
@@ -77,7 +77,7 @@ export class MyListService {
                 this.categories.splice(i,1);
             }
         }
-        this.save();
+        this.saveToLocalStorage();
     }
 
     deleteItem(item:Item){
@@ -89,7 +89,7 @@ export class MyListService {
                 }
             }
         }
-        this.save();
+        this.saveToLocalStorage();
     }
 
     moveItemUp(item:Item){      // TODO: behaviour is not satisfying if already bought items are not displayed
@@ -102,7 +102,7 @@ export class MyListService {
                 }
             }
         }
-        this.save();
+        this.saveToLocalStorage();
     }
 
     moveItemDown(item:Item){    // TODO: behaviour is not satisfying if already bought items are not displayed 
@@ -115,7 +115,7 @@ export class MyListService {
                 }
             }
         }
-        this.save();
+        this.saveToLocalStorage();
     }
 
     moveCategoryUp(category:Category){
@@ -126,7 +126,7 @@ export class MyListService {
                 break;
             }
         }
-        this.save();
+        this.saveToLocalStorage();
     }
 
     moveCategoryDown(category:Category){
@@ -137,15 +137,15 @@ export class MyListService {
                 break;
             }
         }
-        this.save();
+        this.saveToLocalStorage();
     }
 
-    save(){
+    saveToLocalStorage(){
         let categoriesAsString = this.serializeCategories();
         localStorage.setItem("shoppingList", categoriesAsString);
     }
 
-    load(){
+    loadFromLocalStorage(){
         let categoriesAsString = localStorage.getItem("shoppingList");
         
         if (categoriesAsString != null){
@@ -172,7 +172,7 @@ export class MyListService {
     }
 
     // See https://angular.io/docs/ts/latest/guide/server-communication.html
-    saveOnServer(){
+    saveOnServer(successHandler: () => void, errorHandler: (any) => void){
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -184,10 +184,9 @@ export class MyListService {
                 .map(this.extractPOSTData)
                 .catch(this.handleError);
 
-        // TODO: replace these event handlers with a user friendly popup (it's the calling component that should subscribe and define the handlers)
         observableRequest.subscribe(
-                     returnCode => console.log("Successful save, code " + returnCode),
-                     error => console.log("Error when saving list on server: " + error));
+                     successHandler,
+                     errorHandler);
     }
 
     extractPOSTData(res: Response){
@@ -196,7 +195,8 @@ export class MyListService {
         //let body = res._body;
         //return body.data || { }; 
 
-        // For now, simply return true if request successful, else false    
+        // For now, simply return true if request successful, else false. 
+        // Actually, the toolbarComponent, which observes this event simply ignores this return value
         let status = res.status;
         return res.status === 200;
     }
@@ -211,22 +211,21 @@ export class MyListService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        console.error("Error when sending request: " + errMsg);
         return Observable.throw(errMsg);
     }
 
-    loadFromServer(){
+    loadFromServer(successHandler: () => void, errorHandler: (any) => void){
         let observableRequest = this.http.get(this.listURL)
                 .map((res:Response) => res.json())
                 .catch(this.handleError);
 
-        // TODO: replace error handler with a user friendly popup (it's the calling component that should subscribe and define the handlers)
         observableRequest.subscribe(
             serverCategories => {
                 this.categories = serverCategories;
                 this.notifyCategoriesChange();
+                successHandler();
             },
-            error => console.log("Error when loading list from server: " + error)
+            errorHandler
         );
     }
 }

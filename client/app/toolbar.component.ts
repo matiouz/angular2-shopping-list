@@ -6,17 +6,46 @@ import { MyListService } from './mylist.service';
 })
 export class ToolbarComponent {
 
+    isLoadInProgress: boolean = false;
+    isSaveInProgress: boolean = false;
+
     constructor(private myListService:MyListService) {
     }
 
     saveList(){
-        this.myListService.saveOnServer();
+        this.isSaveInProgress = true;
+        this.myListService.saveOnServer(
+            () => this.onSaveListSuccess() , 
+            (error) => this.onSaveListFailure(error));
+    }
+
+    onSaveListSuccess(){
+        this.isSaveInProgress = false;
+    }
+
+    onSaveListFailure(error){
+        console.log("Error when saving, from toolbar: " + error)
+        alert("Error when saving");
+        this.isSaveInProgress = false;
     }
 
     loadList(){
         if (confirm("Reload list: unsaved modifications will be lost. Continue?")){
-            this.myListService.loadFromServer();
+            this.isLoadInProgress = true;
+            this.myListService.loadFromServer( 
+                () => this.onLoadListSuccess() , 
+                (error) => this.onLoadListFailure(error));
         }
+    }
+
+    onLoadListSuccess(){
+        this.isLoadInProgress = false;
+    }
+
+    onLoadListFailure(error){
+        console.log("Error when loading, from toolbar: " + error)
+        alert("Error when loading");
+        this.isLoadInProgress = false;
     }
 
  }
