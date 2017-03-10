@@ -29,6 +29,7 @@ how to develop services in angular2:
     http://www.metaltoad.com/blog/angular-2-http-writing-data
     https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#bidirectional-service
     
+Add configuration of current list name + service url
 
 Make the web page work offline, using html5 cache manifest
     http://www.html5rocks.com/en/tutorials/appcache/beginner/
