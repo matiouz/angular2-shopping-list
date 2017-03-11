@@ -39,15 +39,12 @@ Make the web page work offline, using html5 cache manifest
     install serve:
         npm install --save serve
 
-    in package.json, replace 
-        "lite": "lite-server"
-    with 
-        "serve": "serve"
+    build the dist folder
+        ng build 
     
-    then instead of running 
-        npm run serve
-    run
-        npm start
+    then serve it
+        cd dist
+        serve
     
     To clear cached applications on chrome:
         chrome://appcache-internals/
