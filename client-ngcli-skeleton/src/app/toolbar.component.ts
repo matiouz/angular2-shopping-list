@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MyListService } from './mylist.service';
 @Component({
   selector: 'toolbar',
-  templateUrl:'./app/toolbar.component.html' 
+  templateUrl:'./toolbar.component.html' 
 })
 export class ToolbarComponent {
 

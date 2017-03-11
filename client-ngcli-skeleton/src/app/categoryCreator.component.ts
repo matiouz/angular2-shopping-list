@@ -4,7 +4,7 @@ import { Category }   from './category';
 import { MyListService }   from './mylist.service';
 @Component({
   selector: 'category-creator',
-  templateUrl:'./app/categoryCreator.component.html'
+  templateUrl:'./categoryCreator.component.html'
 })
 export class CategoryCreatorComponent {
 

@@ -3,7 +3,7 @@ import { Item }   from './item';
 import { MyListService }   from './mylist.service';
 @Component({
   selector: 'my-item',
-  templateUrl: './app/item.component.html'
+  templateUrl: './item.component.html'
 })
 export class ItemComponent {
     @Input()

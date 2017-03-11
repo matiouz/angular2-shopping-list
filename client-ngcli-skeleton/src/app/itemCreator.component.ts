@@ -5,7 +5,7 @@ import { Item }   from './item';
 import { MyListService }   from './mylist.service';
 @Component({
   selector: 'item-creator',
-  templateUrl:'./app/itemCreator.component.html' 
+  templateUrl:'./itemCreator.component.html' 
 })
 export class ItemCreatorComponent {
 

@@ -1,3 +1,4 @@
-<h1>
-  {{title}}
-</h1>
+<toolbar></toolbar>
+<div *ngFor="let currentCategory of categories">
+  <my-category [category]="currentCategory"></my-category>
+</div>
