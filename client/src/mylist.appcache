@@ -2,16 +2,11 @@ CACHE MANIFEST
 
 /favicon.ico
 /index.html
-/inline.bundle.js
-/inline.bundle.js.map
-/main.bundle.js
-/main.bundle.js.map
-/polyfills.bundle.js
-/polyfills.bundle.js.map
-/styles.bundle.js
-/styles.bundle.js.map
-/vendor.bundle.js
-/vendor.bundle.js.map
+/main.js
+/polyfills.js
+/runtime.js
+/styles.js
+/vendor.js
 
 NETWORK:
 *
