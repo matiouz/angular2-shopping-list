@@ -9,7 +9,7 @@ export class ItemComponent {
     @Input()
     item: Item; 
 
-    constructor(private myListService:MyListService) {
+    constructor(public myListService:MyListService) {
     }
 
     // renameItem(event){

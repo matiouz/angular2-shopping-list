@@ -12,7 +12,7 @@ export class CategoryCreatorComponent {
     constructor(private myListService:MyListService) {
     }
 
-    addCategory(event){
+    addCategory(){
         this.myListService.addCategory(new Category(this.name));
         this.name = "";
     }

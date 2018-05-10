@@ -9,7 +9,7 @@ export class ToolbarComponent {
     isLoadInProgress: boolean = false;
     isSaveInProgress: boolean = false;
 
-    constructor(private myListService:MyListService) {
+    constructor(public myListService:MyListService) {
     }
 
     saveList(){

@@ -9,7 +9,7 @@ export class CategoryComponent {
     @Input()
     category: Category; 
 
-    constructor(private myListService:MyListService) {
+    constructor(public myListService:MyListService) {
     }
 
     // renameCategory(event){

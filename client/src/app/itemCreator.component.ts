@@ -17,7 +17,7 @@ export class ItemCreatorComponent {
         this.categories = this.myListService.getCategories();
     }
 
-    addItem(event){
+    addItem(){
         // TODO: handle case where no category is selected 
         this.myListService.addItem(new Item(this.name), this.selectedCategory);
         this.name = "";
