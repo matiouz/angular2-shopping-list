@@ -1,0 +1,12 @@
+CACHE MANIFEST
+
+/favicon.ico
+/index.html
+/main.js
+/polyfills.js
+/runtime.js
+/styles.js
+/vendor.js
+
+NETWORK:
+*
