@@ -1,0 +1,53 @@
+.fixed-toolbar {
+    position: fixed;
+    top: 0;
+    left:0;
+    padding: 2px;
+    z-index: 9999;
+    width: 99%;
+    background-color: #FF9800;
+    border-radius: 5px;
+    color:whitesmoke;
+
+    // top: 0;
+    // position: fixed;
+    // right: 0;
+    // left: 0;
+    // z-index: 1030;
+    // background-color: gainsboro;
+    // border-radius: 8px;
+    // margin: 1em;
+}
+
+.main-buttons-bar{
+    padding: 3px;
+    background-color: #FF9800;
+    height: 35px;   /*give a hardcoded height because save/load buttons are floating, so their height is ignored when determining this div height */ 
+}
+
+ .save-load{
+    float: right;
+}
+
+.creator{
+    padding: 3px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.my-checkbox{
+    border:1px solid grey;
+    height:30px;
+    width:30px;
+}
+
+.my-label{
+/* just to center vertically */
+    position: relative;
+    bottom: 10px;
+}
+
+.my-button{
+    height:35px;
+    margin:0;
+}

@@ -34,6 +34,7 @@
 			"extensions": [
 				"mhutchie.git-graph",
 				"eamodio.gitlens",
+				"dbaeumer.vscode-eslint",
 				"github.copilot",
 				"github.copilot-chat"
 			]

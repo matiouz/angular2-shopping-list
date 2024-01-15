@@ -1,0 +1,18 @@
+<div class="category">
+
+  @if(listService.isEditionMode){
+    <span class="categoryName">
+      <input [(ngModel)]="category.name" (blur)="saveCategory()" style="width:120"/>
+    </span>
+  }@else {
+    <span class="categoryName">{{category.name}}</span>
+  }
+</div>  
+
+@for (currentItem of category.items; track currentItem.name) {
+  @if(listService.isDisplayNotNeededItems || currentItem.isNeeded){
+    <app-item-card [item]="currentItem"></app-item-card>
+  }
+} @empty {
+    Empty list of items
+}

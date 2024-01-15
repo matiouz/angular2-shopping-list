@@ -1,0 +1,6 @@
+@for (currentCategory of categories | async; track currentCategory.name) {
+    <app-category-card [category]="currentCategory"></app-category-card>
+  } @empty {
+    Empty list of categories
+  }
+
