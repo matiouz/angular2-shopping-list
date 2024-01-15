@@ -18,5 +18,18 @@ export class CategoryCardComponent {
   constructor (public listService: ListService) {}
 
   saveCategory() {
+    this.listService.saveToLocalStorage()
+  }
+
+  deleteCategory(){
+    this.listService.deleteCategory(this.category);
+  }
+
+  moveCategoryUp(){
+    this.listService.moveCategoryUp(this.category);
+  }
+
+  moveCategoryDown(){
+    this.listService.moveCategoryDown(this.category);
   }
 }

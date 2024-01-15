@@ -18,5 +18,19 @@ export class ItemCardComponent {
   }
 
   saveItem() {
+    this.listService.saveToLocalStorage()
   }
+
+  deleteItem(){
+    this.listService.deleteItem(this.item);
+  }
+
+  moveItemUp(){
+    this.listService.moveItemUp(this.item);
+  }
+
+  moveItemDown(){
+    this.listService.moveItemDown(this.item);
+  }
+
 }

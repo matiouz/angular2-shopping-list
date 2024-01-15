@@ -4,6 +4,11 @@
     <span class="categoryName">
       <input [(ngModel)]="category.name" (blur)="saveCategory()" style="width:120"/>
     </span>
+    <span>
+      <button (click)="deleteCategory()">✗</button>
+      <button (click)="moveCategoryUp()">↑</button>
+      <button (click)="moveCategoryDown()">↓</button>
+    </span>
   }@else {
     <span class="categoryName">{{category.name}}</span>
   }

@@ -1,10 +1,15 @@
 <div class="item" >  
     @if(listService.isEditionMode)  {
         <input [(ngModel)]="item.name" (blur)="saveItem()" style="width:120"/>
-        <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded" (ngModelChange)="saveItem()"/>
+        <span>
+            <button (click)="deleteItem()">✗</button>
+            <button (click)="moveItemUp()">↑</button>
+            <button (click)="moveItemDown()">↓</button>
+        </span>
 
     } @else{
         <span class="itemName">{{item.name}}</span>
+        <input id="isNeededChk" type="checkbox" [(ngModel)]="item.isNeeded" (ngModelChange)="saveItem()"/>
     }
 </div>  
 
