@@ -15,11 +15,8 @@ export class CategoryCardComponent {
   @Input({ required: true })
     category!: Category
 
-
-
   constructor (public listService: ListService) {}
 
   saveCategory() {
-    this.listService.saveCategory(this.category)
   }
 }

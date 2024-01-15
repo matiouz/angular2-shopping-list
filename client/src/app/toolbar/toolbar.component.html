@@ -2,10 +2,10 @@
 <!-- Empty div that take the same height as the toolbar. Since the toolbar is fixed at the top, it is displayed over the rest, so we need to push down the first category
 The height of this div varies based on the content of the toolbar (edition mode or not) -->
 @if(listService.isEditionMode){
-<div style="height:60px;"> 
+<div style="height:6em;"> 
 </div>
 }@else{
-<div style="height:4px;"> 
+<div style="height:3em;"> 
 </div>
 }
 
@@ -21,8 +21,10 @@ The height of this div varies based on the content of the toolbar (edition mode 
             <button class="my-button" [disabled]="isLoadInProgress" (click)="loadList()">load</button>
         </div>
     </div>
-    <!-- <div class="creator" *ngIf="myListService.isEditionMode">
-        <item-creator></item-creator>
-        <category-creator></category-creator>
-    </div> -->
+    @if(listService.isEditionMode){
+    <div class="creator">
+        <app-item-creator></app-item-creator>
+        <app-category-creator></app-category-creator>
+    </div>
+    }
 </div>

@@ -14,14 +14,12 @@ import { AsyncPipe } from '@angular/common';
 })
 export class CategoriesListComponent implements OnInit {
 
-  categories?: Observable<Category[]>;  
-
-  constructor(private listService: ListService){
+  constructor(public listService: ListService){
     
   }
 
   ngOnInit(): void {
-    this.categories = this.listService.getCategories();
+    this.listService.loadFromLocalStorage();
   }
 
   
