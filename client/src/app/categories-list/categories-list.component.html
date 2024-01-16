@@ -1,6 +1,5 @@
 @for (currentCategory of listService.categories; track currentCategory.name) {
-    <app-category-card [category]="currentCategory"></app-category-card>
-  } @empty {
-    Empty list of categories
-  }
-
+  <app-category-card [category]="currentCategory"></app-category-card>
+} @empty {
+  Empty list of categories
+}

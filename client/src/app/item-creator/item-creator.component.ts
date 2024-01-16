@@ -8,23 +8,21 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './item-creator.component.html',
-  styleUrl: './item-creator.component.scss'
+  styleUrl: './item-creator.component.scss',
 })
 export class ItemCreatorComponent {
-
   selectedCategory?: Category;
   name?: string;
 
-  constructor(public listService:ListService) {
-  }
+  constructor(public listService: ListService) {}
 
-  addItem(){
-    if (this.name && this.selectedCategory){
+  addItem() {
+    if (this.name && this.selectedCategory) {
       this.listService.addItem(this.name, this.selectedCategory);
     } else {
-        // TODO: handle case where no category is selected 
-        console.log("item name and category are mandatory")
-      }
-      this.name = "";
+      // TODO: handle case where no category is selected
+      console.log('item name and category are mandatory');
+    }
+    this.name = '';
   }
 }

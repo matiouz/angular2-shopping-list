@@ -9,23 +9,19 @@ import { ItemCreatorComponent } from '../item-creator/item-creator.component';
   standalone: true,
   imports: [FormsModule, CategoryCreatorComponent, ItemCreatorComponent],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss'
+  styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
-
   isLoadInProgress: boolean = false;
   isSaveInProgress: boolean = false;
 
-  constructor(public listService: ListService) {
-  }
+  constructor(public listService: ListService) {}
 
-
-
-  saveList(){
+  saveList() {
     this.listService.saveToLocalStorage();
   }
 
-  loadList(){
+  loadList() {
     this.listService.loadFromLocalStorage();
   }
 }

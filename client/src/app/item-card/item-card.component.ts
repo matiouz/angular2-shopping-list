@@ -1,36 +1,34 @@
-import { Component, Input } from '@angular/core'
-import { Item } from '../model/item'
-import { ListService } from '../list.service'
-import { FormsModule } from '@angular/forms'
+import { Component, Input } from '@angular/core';
+import { Item } from '../model/item';
+import { ListService } from '../list.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './item-card.component.html',
-  styleUrl: './item-card.component.scss'
+  styleUrl: './item-card.component.scss',
 })
 export class ItemCardComponent {
   @Input({ required: true })
-  item!: Item
+  item!: Item;
 
-  constructor (public listService: ListService) {
-  }
+  constructor(public listService: ListService) {}
 
   saveItem() {
-    this.listService.saveToLocalStorage()
+    this.listService.saveToLocalStorage();
   }
 
-  deleteItem(){
+  deleteItem() {
     this.listService.deleteItem(this.item);
   }
 
-  moveItemUp(){
+  moveItemUp() {
     this.listService.moveItemUp(this.item);
   }
 
-  moveItemDown(){
+  moveItemDown() {
     this.listService.moveItemDown(this.item);
   }
-
 }

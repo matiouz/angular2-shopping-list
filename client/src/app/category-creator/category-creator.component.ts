@@ -7,22 +7,20 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './category-creator.component.html',
-  styleUrl: './category-creator.component.scss'
+  styleUrl: './category-creator.component.scss',
 })
 export class CategoryCreatorComponent {
-
   name?: string;
 
-  constructor(public listService: ListService) {
-  }
+  constructor(public listService: ListService) {}
 
   addCategory() {
     if (this.name) {
       this.listService.addCategory(this.name);
     } else {
       //TODO: add check for empty category name
-      console.log("category name is mandatory")
+      console.log('category name is mandatory');
     }
-    this.name = "";
+    this.name = '';
   }
 }
