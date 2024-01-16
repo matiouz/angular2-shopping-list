@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { type Category } from './model/category';
 import { Item } from './model/item';
+import { ListBackendService } from './list-backend.service';
 
 @Injectable({
   providedIn: 'root',
@@ -37,10 +38,10 @@ export class ListService {
   isEditionMode: boolean = false;
   isDisplayNotNeededItems: boolean = true;
 
-  // listURL: string = "http://localhost:3002/lists/list1.json";
+  listURL: string = 'http://localhost:3002/lists/list1.json';
   // listURL: string = "http://142.3.32.98:3002/lists/list1.json";
 
-  constructor() {}
+  constructor(private listBackendService: ListBackendService) {}
 
   // This service acts as a global state for the app.
   // The categories variable is public, and directly referenced by the components
@@ -156,5 +157,21 @@ export class ListService {
       }
     }
     this.saveToLocalStorage();
+  }
+
+  saveOnServer(successHandler: () => void, errorHandler: (arg: unknown) => void) {
+    this.listBackendService
+      .saveCategories(this.listURL, this.categories)
+      .subscribe({ next: successHandler, error: errorHandler });
+  }
+
+  loadFromServer(successHandler: () => void, errorHandler: (arg: unknown) => void) {
+    this.listBackendService.getCategories(this.listURL).subscribe({
+      next: (serverCategories: Category[]) => {
+        this.categories = serverCategories;
+        successHandler();
+      },
+      error: errorHandler,
+    });
   }
 }
