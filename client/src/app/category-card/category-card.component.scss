@@ -1,0 +1,27 @@
+.category {
+  background-color: #80a5b7;
+  border-radius: 5px;
+  border: 1px solid #607d8b;
+  padding: 5;
+  color: whitesmoke;
+  font-weight: bold;
+  padding: 2;
+  overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
+}
+
+button {
+  float: right;
+  border: 1px solid grey;
+  height: 35px;
+  width: 35px;
+  margin: 2px;
+}
+
+.categoryName {
+  /* just to center vertically */
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 20px;
+}
