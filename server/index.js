@@ -43,7 +43,6 @@ server.on('request', function (request, response) {
 
 	// A file with the same name as the list_id is stored in the "resources" folder
 
-
 	response.setHeader("Content-Type", "text/javascript");
 	response.setHeader('Access-Control-Allow-Origin', '*');
 	
