@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ListService } from '../list.service';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,11 +11,14 @@ import { FormsModule } from '@angular/forms';
 export class CategoryCreatorComponent {
   name?: string;
 
-  constructor(public listService: ListService) {}
+  @Output()
+  addCategoryEvt = new EventEmitter<string>();
+
+  constructor() {}
 
   addCategory() {
     if (this.name) {
-      this.listService.addCategory(this.name);
+      this.addCategoryEvt.next(this.name);
     } else {
       //TODO: add check for empty category name
       console.log('category name is mandatory');

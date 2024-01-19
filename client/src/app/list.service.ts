@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import { type Category } from './model/category';
-import { Item } from './model/item';
 import { ListBackendService } from './list-backend.service';
+import { BehaviorSubject } from 'rxjs';
+import { Item } from './model/item';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ListService {
   addCategory(name: string) {
-    this.categories.push({ name: name, items: [] });
+    // TODO: we should emit a new array, not modify the existing one
+    this.categoriesSubject.getValue().push({ name: name, items: [] });
     this.saveToLocalStorage();
   }
 
-  addItem(name: string, selectedCategory: Category) {
-    this.categories.find((c) => c.name == selectedCategory.name)?.items.push({ name: name, isNeeded: true });
+  addItem(item: Item, categoryName: string) {
+    // TODO: we should emit a new array of categories, not modify the existing one
+    this.categoriesSubject
+      .getValue()
+      .find((c) => c.name == categoryName)
+      ?.items.push(item);
     this.saveToLocalStorage();
   }
 
@@ -41,11 +47,10 @@ export class ListService {
   listURL: string = 'http://localhost:3002/lists/list1.json';
   // listURL: string = "http://142.3.32.98:3002/lists/list1.json";
 
-  constructor(private listBackendService: ListBackendService) {}
+  private categoriesSubject = new BehaviorSubject<Category[]>([]);
+  public categories$ = this.categoriesSubject.asObservable();
 
-  // This service acts as a global state for the app.
-  // The categories variable is public, and directly referenced by the components
-  categories: Category[] = [];
+  constructor(private listBackendService: ListBackendService) {}
 
   // When we add/remove/reorder items in the category and items arrays, angular detects it
   // this is because ngFor detects and rerenders elements from an array that are added/removed/reordered:
@@ -60,18 +65,21 @@ export class ListService {
   // but this seems to complicated for our need, and would cause a lot of rerendering ...
 
   saveToLocalStorage() {
-    const categoriesAsString = this.serializeCategories(this.categories);
+    const categories = this.categoriesSubject.getValue();
+    const categoriesAsString = this.serializeCategories(categories);
     localStorage.setItem('shoppingList', categoriesAsString);
   }
 
   loadFromLocalStorage() {
     const categoriesAsString = localStorage.getItem('shoppingList');
 
+    let cats = [];
     if (categoriesAsString != null) {
-      this.categories = this.deserializeCategories(categoriesAsString);
+      cats = this.deserializeCategories(categoriesAsString);
     } else {
-      this.categories = this.sampleCategories; // temporary, to work with sample data
+      cats = this.sampleCategories; // temporary, to work with sample data
     }
+    this.categoriesSubject.next(cats);
   }
 
   serializeCategories(categories: Category[]): string {
@@ -84,49 +92,17 @@ export class ListService {
     return loadedCategories;
   }
 
-  deleteCategory(category: Category) {
-    for (let i = 0; i < this.categories.length; i++) {
-      if (this.categories[i] == category) {
-        this.categories.splice(i, 1);
-      }
-    }
-    this.saveToLocalStorage();
-  }
-
-  moveCategoryUp(category: Category) {
-    for (let i = 1; i < this.categories.length; i++) {
-      // No need to run loop on fist category because it cannot be moved up
-      if (this.categories[i] == category) {
-        this.categories[i] = this.categories[i - 1];
-        this.categories[i - 1] = category;
-        break;
-      }
-    }
-    this.saveToLocalStorage();
-  }
-
-  moveCategoryDown(category: Category) {
-    for (let i = 0; i < this.categories.length - 1; i++) {
-      // No need to run loop on last category because it cannot be moved down
-      if (this.categories[i] == category) {
-        this.categories[i] = this.categories[i + 1];
-        this.categories[i + 1] = category;
-        break;
-      }
-    }
-    this.saveToLocalStorage();
-  }
-
   saveOnServer(successHandler: () => void, errorHandler: (arg: unknown) => void) {
+    const categories = this.categoriesSubject.getValue();
     this.listBackendService
-      .saveCategories(this.listURL, this.categories)
+      .saveCategories(this.listURL, categories)
       .subscribe({ next: successHandler, error: errorHandler });
   }
 
   loadFromServer(successHandler: () => void, errorHandler: (arg: unknown) => void) {
     this.listBackendService.getCategories(this.listURL).subscribe({
       next: (serverCategories: Category[]) => {
-        this.categories = serverCategories;
+        this.categoriesSubject.next(serverCategories); // there may be a cleaner way to emit a value from another observable
         successHandler();
       },
       error: errorHandler,

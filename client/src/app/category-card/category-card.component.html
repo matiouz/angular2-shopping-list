@@ -1,5 +1,5 @@
 <div class="category">
-  @if (listService.isEditionMode) {
+  @if (isEditionMode) {
     <span class="categoryName">
       <input [(ngModel)]="category.name" (blur)="saveCategory()" style="width: 120" />
     </span>
@@ -14,15 +14,16 @@
 </div>
 
 @for (currentItem of category.items; track currentItem.name; let i = $index) {
-  @if (listService.isDisplayNotNeededItems || currentItem.isNeeded) {
+  @if (isDisplayNotNeededItems || currentItem.isNeeded) {
     <!-- we can't use currentItem in the two way binding because it's readonly, so we use category.items[i] instead -->
+    <!-- we use 2 ways binding using [(item)], and in addition, since we want to add a custom behaviour when item is changed, we set (itemChange) -->
     <app-item-card
       [(item)]="category.items[i]"
       (itemChange)="itemUpdated($event)"
       (deleteItemEvt)="deleteItem($event)"
       (moveItemUpEvt)="moveItemUp($event)"
       (moveItemDownEvt)="moveItemDown($event)"
-      [isEditionMode]="listService.isEditionMode"
+      [isEditionMode]="isEditionMode"
     ></app-item-card>
   }
 } @empty {

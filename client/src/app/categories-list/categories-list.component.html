@@ -1,5 +1,15 @@
-@for (currentCategory of listService.categories; track currentCategory.name) {
-  <app-category-card [category]="currentCategory"></app-category-card>
+@for (currentCategory of categories; track currentCategory.name; let i = $index) {
+  <!-- we can't use currentCategory in the two way binding because it's readonly, so we use categories[i] instead -->
+  <!-- we use 2 ways binding using [(category)], and in addition, since we want to add a custom behaviour when category is changed, we set (categoryChange) -->
+  <app-category-card
+    [(category)]="categories[i]"
+    (categoryChange)="categoryUpdated($event)"
+    [isEditionMode]="listService.isEditionMode"
+    [isDisplayNotNeededItems]="listService.isDisplayNotNeededItems"
+    (deleteCategoryEvt)="deleteCategory($event)"
+    (moveCategoryUpEvt)="moveCategoryUp($event)"
+    (moveCategoryDownEvt)="moveCategoryDown($event)"
+  ></app-category-card>
 } @empty {
   Empty list of categories
 }

@@ -19,8 +19,8 @@ The height of this div varies based on the content of the toolbar (edition mode 
   </div>
   @if (listService.isEditionMode) {
     <div class="creator">
-      <app-item-creator></app-item-creator>
-      <app-category-creator></app-category-creator>
+      <app-item-creator (addItemEvt)="addItem($event)" [categories]="categories"></app-item-creator>
+      <app-category-creator (addCategoryEvt)="addCategory($event)"></app-category-creator>
     </div>
   }
 </div>

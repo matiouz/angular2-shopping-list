@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ListService } from '../list.service';
 import { FormsModule } from '@angular/forms';
 import { CategoryCreatorComponent } from '../category-creator/category-creator.component';
 import { ItemCreatorComponent } from '../item-creator/item-creator.component';
+import { ItemToAdd } from '../model/item';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,6 +17,9 @@ export class ToolbarComponent {
   isLoadInProgress: boolean = false;
   isSaveInProgress: boolean = false;
 
+  @Input()
+  categories!: Category[];
+
   constructor(public listService: ListService) {}
 
   saveList() {
@@ -23,6 +28,14 @@ export class ToolbarComponent {
       () => this.onSaveListSuccess(),
       (error) => this.onSaveListFailure(error)
     );
+  }
+
+  addCategory(name: string) {
+    this.listService.addCategory(name);
+  }
+
+  addItem(itemToAdd: ItemToAdd) {
+    this.listService.addItem(itemToAdd.item, itemToAdd.categoryName);
   }
 
   onSaveListSuccess() {
