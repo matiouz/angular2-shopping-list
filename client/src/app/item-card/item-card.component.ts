@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../model/item';
-import { ListService } from '../list.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,21 +13,36 @@ export class ItemCardComponent {
   @Input({ required: true })
   item!: Item;
 
-  constructor(public listService: ListService) {}
+  @Input({ required: true })
+  isEditionMode!: boolean;
 
-  saveItem() {
-    this.listService.saveToLocalStorage();
+  @Output()
+  itemChange = new EventEmitter<Item>();
+
+  @Output()
+  deleteItemEvt = new EventEmitter<Item>();
+
+  @Output()
+  moveItemUpEvt = new EventEmitter<Item>();
+
+  @Output()
+  moveItemDownEvt = new EventEmitter<Item>();
+
+  constructor() {}
+
+  itemUpdated() {
+    this.itemChange.emit(this.item);
   }
 
   deleteItem() {
-    this.listService.deleteItem(this.item);
+    this.deleteItemEvt.emit(this.item);
   }
 
   moveItemUp() {
-    this.listService.moveItemUp(this.item);
+    this.moveItemUpEvt.emit(this.item);
   }
 
   moveItemDown() {
-    this.listService.moveItemDown(this.item);
+    this.moveItemDownEvt.emit(this.item);
   }
 }

@@ -13,9 +13,17 @@
   }
 </div>
 
-@for (currentItem of category.items; track currentItem.name) {
+@for (currentItem of category.items; track currentItem.name; let i = $index) {
   @if (listService.isDisplayNotNeededItems || currentItem.isNeeded) {
-    <app-item-card [item]="currentItem"></app-item-card>
+    <!-- we can't use currentItem in the two way binding because it's readonly, so we use category.items[i] instead -->
+    <app-item-card
+      [(item)]="category.items[i]"
+      (itemChange)="itemUpdated($event)"
+      (deleteItemEvt)="deleteItem($event)"
+      (moveItemUpEvt)="moveItemUp($event)"
+      (moveItemDownEvt)="moveItemDown($event)"
+      [isEditionMode]="listService.isEditionMode"
+    ></app-item-card>
   }
 } @empty {
   No item
