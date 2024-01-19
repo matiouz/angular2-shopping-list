@@ -1,0 +1,36 @@
+[
+    {
+        "name": "cremerie",
+        "items": [
+            {
+                "name": "fromage",
+                "isNeeded": false
+            },
+            {
+                "name": "lait",
+                "isNeeded": false
+            },
+            {
+                "name": "yaourts",
+                "isNeeded": false
+            },
+            {
+                "name": "beurre",
+                "isNeeded": true
+            }
+        ]
+    },
+    {
+        "name": "fruits",
+        "items": [
+            {
+                "name": "pommes",
+                "isNeeded": true
+            },
+            {
+                "name": "abricots",
+                "isNeeded": true
+            }
+        ]
+    }
+]
