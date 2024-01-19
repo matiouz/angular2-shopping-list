@@ -38,16 +38,39 @@ export class CategoryCardComponent {
     this.listService.saveToLocalStorage(); //TODO: instead, send event to parent
   }
 
-  deleteItem(event: Item) {
-    console.log(event);
-    this.listService.deleteItem(event);
+  deleteItem(item: Item) {
+    for (let i = 0; i < this.category.items.length; i++) {
+      if (this.category.items[i] == item) {
+        this.category.items.splice(i, 1);
+        break;
+      }
+    }
+    this.listService.saveToLocalStorage();
   }
 
-  moveItemUp(event: Item) {
-    this.listService.moveItemUp(event);
+  moveItemUp(item: Item) {
+    // TODO: behaviour is not satisfying if already bought items are not displayed
+    for (let i = 1; i < this.category.items.length; i++) {
+      // No need to run the loop on the first item because the first item cannot be moved up
+      if (this.category.items[i] == item) {
+        this.category.items[i] = this.category.items[i - 1];
+        this.category.items[i - 1] = item;
+        break;
+      }
+    }
+    this.listService.saveToLocalStorage();
   }
 
-  moveItemDown(event: Item) {
-    this.listService.moveItemDown(event);
+  moveItemDown(item: Item) {
+    // TODO: behaviour is not satisfying if already bought items are not displayed
+    for (let i = 0; i < this.category.items.length - 1; i++) {
+      // No need to run the loop on the last item because the last item cannot be moved down
+      if (this.category.items[i] == item) {
+        this.category.items[i] = this.category.items[i + 1];
+        this.category.items[i + 1] = item;
+        break;
+      }
+    }
+    this.listService.saveToLocalStorage();
   }
 }

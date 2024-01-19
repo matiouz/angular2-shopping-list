@@ -93,48 +93,6 @@ export class ListService {
     this.saveToLocalStorage();
   }
 
-  deleteItem(item: Item) {
-    for (const currentCategory of this.categories) {
-      for (let i = 0; i < currentCategory.items.length; i++) {
-        if (currentCategory.items[i] == item) {
-          currentCategory.items.splice(i, 1);
-          break;
-        }
-      }
-    }
-    this.saveToLocalStorage();
-  }
-
-  moveItemUp(item: Item) {
-    // TODO: behaviour is not satisfying if already bought items are not displayed
-    for (const currentCategory of this.categories) {
-      for (let i = 1; i < currentCategory.items.length; i++) {
-        // No need to run the loop on the first item because the first item cannot be moved up
-        if (currentCategory.items[i] == item) {
-          currentCategory.items[i] = currentCategory.items[i - 1];
-          currentCategory.items[i - 1] = item;
-          break;
-        }
-      }
-    }
-    this.saveToLocalStorage();
-  }
-
-  moveItemDown(item: Item) {
-    // TODO: behaviour is not satisfying if already bought items are not displayed
-    for (const currentCategory of this.categories) {
-      for (let i = 0; i < currentCategory.items.length - 1; i++) {
-        // No need to run the loop on the last item because the last item cannot be moved down
-        if (currentCategory.items[i] == item) {
-          currentCategory.items[i] = currentCategory.items[i + 1];
-          currentCategory.items[i + 1] = item;
-          break;
-        }
-      }
-    }
-    this.saveToLocalStorage();
-  }
-
   moveCategoryUp(category: Category) {
     for (let i = 1; i < this.categories.length; i++) {
       // No need to run loop on fist category because it cannot be moved up
