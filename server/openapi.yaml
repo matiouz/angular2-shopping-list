@@ -1,0 +1,71 @@
+openapi: 3.0.2
+info:
+  title: Sample API
+  version: 0.0.1
+servers:
+  - url: http://localhost:3002
+    description: Optional server description, e.g. Main (production) server
+  - url: http://staging-api.example.com
+    description: Optional server description, e.g. Internal staging server for testing
+paths:
+  /lists/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      summary: Returns a shopping list
+      responses:
+        '200':    # status code
+          description: A JSON array of categories
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Category'
+    put:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      summary: Saves or creates a shopping list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':    # status code
+          description: A JSON array of categories
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Category'
+
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShoppingItem'
+    ShoppingItem:
+      type: object
+      properties:
+        name:
+          type: string
+        isNeeded:
+          type: boolean
+
