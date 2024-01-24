@@ -5,16 +5,12 @@
   padding: 5;
   color: whitesmoke;
   font-weight: bold;
-  padding: 2;
+  padding: 4px;
   overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
 }
 
 button {
   float: right;
-  border: 1px solid grey;
-  height: 35px;
-  width: 35px;
-  margin: 2px;
 }
 
 .categoryName {
@@ -23,5 +19,4 @@ button {
   vertical-align: middle;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 20px;
 }

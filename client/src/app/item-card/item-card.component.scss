@@ -2,9 +2,8 @@
   /*background-color: lavender;*/
   border: 1px solid thistle;
   border-radius: 5px;
-  padding: 2;
+  padding: 4px;
   overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
-  height: 2em;
 
   display: flex;
   align-items: center;
@@ -13,10 +12,6 @@
 
 button {
   float: right;
-  border: 1px solid grey;
-  height: 35px;
-  width: 35px;
-  margin: 2px;
 }
 
 .itemName {
@@ -25,13 +20,12 @@ button {
   vertical-align: middle;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 20px;
 }
 
 #isNeededChk {
   float: right;
   border: 1px solid grey;
-  height: 35px;
-  width: 35px;
+  height: 2rem;
+  width: 2rem;
   margin: 2px;
 }

@@ -2,9 +2,9 @@
   @if (isEditionMode) {
     <input [(ngModel)]="item.name" (blur)="itemUpdated()" style="width: 120" />
     <span>
-      <button (click)="deleteItem()">✗</button>
-      <button (click)="moveItemUp()">↑</button>
-      <button (click)="moveItemDown()">↓</button>
+      <button class="default-button" (click)="deleteItem()">✗</button>
+      <button class="default-button" (click)="moveItemUp()">↑</button>
+      <button class="default-button" (click)="moveItemDown()">↓</button>
     </span>
   } @else {
     <span class="itemName">{{ item.name }}</span>
