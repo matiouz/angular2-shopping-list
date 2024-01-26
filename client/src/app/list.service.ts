@@ -8,14 +8,22 @@ import { Item } from './model/item';
   providedIn: 'root',
 })
 export class ListService {
+  // Responsiblity of the data structure is not very clean currently:
+  // part of the update is done in the service (adding category or item), and another part is done in the components (reorder and rename items)
+  // The components receive the data as input, and update the properties of this input directly (no immutability)
+
+  // Plus this data is published by this service as an observable, but then the data is muted directly by the service or by the components
+
+  // It could be cleaner to have a data structure that is immutable, and that is updated by the service, and then published as an observable
+  // But this would require to have a deep copy of the data structure, and to emit a new value each time the data structure is updated,
+  // -> so no two way bindings, even for standard web inputs. This would add complexity to the components
+
   addCategory(name: string) {
-    // TODO: we should emit a new array, not modify the existing one
     this.categoriesSubject.getValue().push({ name: name, items: [] });
     this.saveToLocalStorage();
   }
 
   addItem(item: Item, categoryName: string) {
-    // TODO: we should emit a new array of categories, not modify the existing one
     this.categoriesSubject
       .getValue()
       .find((c) => c.name == categoryName)
@@ -51,18 +59,6 @@ export class ListService {
   public categories$ = this.categoriesSubject.asObservable();
 
   constructor(private listBackendService: ListBackendService) {}
-
-  // When we add/remove/reorder items in the category and items arrays, angular detects it
-  // this is because ngFor detects and rerenders elements from an array that are added/removed/reordered:
-  // https://malcoded.com/posts/angular-ngfor/
-  //    Generally, re-rendering of the list occurs in one of three cases:
-  //      When an element is added to the array
-  //      When an element is removed from the array
-  //      When items are reordered
-
-  // to make things clearner, we should ideally make the structure immutable, by making a deep copy of categories/items,
-  // and emit a new array each time a category or an item is updated/added/deleted
-  // but this seems to complicated for our need, and would cause a lot of rerendering ...
 
   saveToLocalStorage() {
     const categories = this.categoriesSubject.getValue();

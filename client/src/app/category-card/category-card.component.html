@@ -1,7 +1,7 @@
 <div class="category">
   @if (isEditionMode) {
     <span class="categoryName">
-      <input [(ngModel)]="category.name" (blur)="saveCategory()" style="width: 120" />
+      <input [(ngModel)]="category.name" (blur)="categoryNameUpdated()" style="width: 120" />
     </span>
     <span>
       <button class="default-button" (click)="deleteCategory()">✗</button>
@@ -13,13 +13,11 @@
   }
 </div>
 
-@for (currentItem of category.items; track currentItem.name; let i = $index) {
+@for (currentItem of category.items; track currentItem.name) {
   @if (isDisplayNotNeededItems || currentItem.isNeeded) {
-    <!-- we can't use currentItem in the two way binding because it's readonly, so we use category.items[i] instead -->
-    <!-- we use 2 ways binding using [(item)], and in addition, since we want to add a custom behaviour when item is changed, we set (itemChange) -->
     <app-item-card
-      [(item)]="category.items[i]"
-      (itemChange)="itemUpdated($event)"
+      [item]="currentItem"
+      (itemUpdatedEvt)="itemUpdated($event)"
       (deleteItemEvt)="deleteItem($event)"
       (moveItemUpEvt)="moveItemUp($event)"
       (moveItemDownEvt)="moveItemDown($event)"

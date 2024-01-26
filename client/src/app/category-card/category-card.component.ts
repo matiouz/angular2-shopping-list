@@ -22,7 +22,7 @@ export class CategoryCardComponent {
   isDisplayNotNeededItems!: boolean;
 
   @Output()
-  categoryChange = new EventEmitter<Category>(); // for 2 ways binding, it must be called <property name>Change
+  categoryUpdatedEvt = new EventEmitter<Category>();
 
   @Output()
   deleteCategoryEvt = new EventEmitter<Category>();
@@ -35,8 +35,8 @@ export class CategoryCardComponent {
 
   constructor() {}
 
-  saveCategory() {
-    this.categoryChange.emit(this.category); // we emit the same js object. For immutability, we should emit a new object
+  categoryNameUpdated() {
+    this.categoryUpdatedEvt.emit(this.category);
   }
 
   deleteCategory() {
@@ -52,23 +52,20 @@ export class CategoryCardComponent {
   }
 
   itemUpdated(event: Item) {
-    // we emit the same js object. For immutability, we should emit a new object
-    this.categoryChange.emit(this.category);
+    this.categoryUpdatedEvt.emit(this.category);
   }
 
   deleteItem(item: Item) {
-    // we emit the same js object. For immutability, we should emit a new object
     for (let i = 0; i < this.category.items.length; i++) {
       if (this.category.items[i] == item) {
         this.category.items.splice(i, 1);
         break;
       }
     }
-    this.categoryChange.emit(this.category);
+    this.categoryUpdatedEvt.emit(this.category);
   }
 
   moveItemUp(item: Item) {
-    // we emit the same js object. For immutability, we should emit a new object
     // TODO: behaviour is not satisfying if already bought items are not displayed
     for (let i = 1; i < this.category.items.length; i++) {
       // No need to run the loop on the first item because the first item cannot be moved up
@@ -78,11 +75,10 @@ export class CategoryCardComponent {
         break;
       }
     }
-    this.categoryChange.emit(this.category);
+    this.categoryUpdatedEvt.emit(this.category);
   }
 
   moveItemDown(item: Item) {
-    // we emit the same js object. For immutability, we should emit a new object
     // TODO: behaviour is not satisfying if already bought items are not displayed
     for (let i = 0; i < this.category.items.length - 1; i++) {
       // No need to run the loop on the last item because the last item cannot be moved down
@@ -92,6 +88,6 @@ export class CategoryCardComponent {
         break;
       }
     }
-    this.categoryChange.emit(this.category);
+    this.categoryUpdatedEvt.emit(this.category);
   }
 }

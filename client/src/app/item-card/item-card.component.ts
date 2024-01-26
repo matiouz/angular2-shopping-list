@@ -17,7 +17,7 @@ export class ItemCardComponent {
   isEditionMode!: boolean;
 
   @Output()
-  itemChange = new EventEmitter<Item>(); // for 2 ways binding, it must be called <property name>Change
+  itemUpdatedEvt = new EventEmitter<Item>();
 
   @Output()
   deleteItemEvt = new EventEmitter<Item>();
@@ -31,7 +31,7 @@ export class ItemCardComponent {
   constructor() {}
 
   itemUpdated() {
-    this.itemChange.emit(this.item); // we emit the same js object. For immutability, we should emit a new object
+    this.itemUpdatedEvt.emit(this.item);
   }
 
   deleteItem() {
