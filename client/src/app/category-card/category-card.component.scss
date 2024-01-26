@@ -7,6 +7,9 @@
   font-weight: bold;
   padding: 4px;
   overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 button {
