@@ -31,11 +31,13 @@ export class ToolbarComponent {
   }
 
   addCategory(name: string) {
-    this.listService.addCategory(name);
+    this.categories.push({ name: name, items: [] });
+    this.listService.saveToLocalStorage();
   }
 
   addItem(itemToAdd: ItemToAdd) {
-    this.listService.addItem(itemToAdd.item, itemToAdd.categoryName);
+    this.categories.find((c) => c.name == itemToAdd.categoryName)?.items.push(itemToAdd.item);
+    this.listService.saveToLocalStorage();
   }
 
   onSaveListSuccess() {

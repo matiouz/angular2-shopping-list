@@ -9,27 +9,13 @@ import { Item } from './model/item';
 })
 export class ListService {
   // Responsiblity of the data structure is not very clean currently:
-  // part of the update is done in the service (adding category or item), and another part is done in the components (reorder and rename items)
+  // The data is published by this service as an observable, but then the data is muted directly by the components
   // The components receive the data as input, and update the properties of this input directly (no immutability)
-
-  // Plus this data is published by this service as an observable, but then the data is muted directly by the service or by the components
 
   // It could be cleaner to have a data structure that is immutable, and that is updated by the service, and then published as an observable
   // But this would require to have a deep copy of the data structure, and to emit a new value each time the data structure is updated,
   // -> so no two way bindings, even for standard web inputs. This would add complexity to the components
-
-  addCategory(name: string) {
-    this.categoriesSubject.getValue().push({ name: name, items: [] });
-    this.saveToLocalStorage();
-  }
-
-  addItem(item: Item, categoryName: string) {
-    this.categoriesSubject
-      .getValue()
-      .find((c) => c.name == categoryName)
-      ?.items.push(item);
-    this.saveToLocalStorage();
-  }
+  // When using a state manager, the recommended good practice is to keep the state flat to avoid deep copies (but a state manager would be overkill for our situation)
 
   sampleCategories: Category[] = [
     {
