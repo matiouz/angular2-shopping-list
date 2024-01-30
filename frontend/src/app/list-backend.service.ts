@@ -33,6 +33,6 @@ export class ListBackendService {
   }
 
   saveCategories(url: string, categories: Category[]): Observable<boolean> {
-    return this.http.post<boolean>(url, categories, httpOptions).pipe(catchError(this.handleError));
+    return this.http.put<boolean>(url, categories, httpOptions).pipe(catchError(this.handleError));
   }
 }
