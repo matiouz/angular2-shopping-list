@@ -13,6 +13,9 @@ describe('ItemCardComponent', () => {
 
     fixture = TestBed.createComponent(ItemCardComponent);
     component = fixture.componentInstance;
+
+    component.item = { name: 'item 1', isNeeded: true };
+
     fixture.detectChanges();
   });
 
