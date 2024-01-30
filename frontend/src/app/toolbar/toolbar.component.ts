@@ -69,6 +69,7 @@ export class ToolbarComponent {
   }
 
   onLoadListSuccess() {
+    this.listService.saveToLocalStorage();
     console.log('Load success');
     this.isLoadInProgress = false;
   }
