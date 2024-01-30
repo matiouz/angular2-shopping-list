@@ -24,7 +24,7 @@ export async function shoppingList(
 app.http("shoppingList", {
   methods: ["GET", "PUT"],
   route: "lists/{id}",
-  authLevel: "anonymous",
+  authLevel: "function",
   handler: shoppingList,
 });
 
