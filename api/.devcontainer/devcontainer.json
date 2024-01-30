@@ -16,6 +16,10 @@
     "ghcr.io/devcontainers/features/azure-cli:1": {},
     "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {}
   },
+  //mounts
+  "mounts": [
+    "source=/home/mathieu/.ssh/perso,target=/home/node/.ssh,type=bind"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
