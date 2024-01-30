@@ -29,14 +29,15 @@ var FILES_PATH = 'resources/';
 
 var server = http.createServer();
 
+// Original version, using bare nodejs. Not used anymore
 server.on('request', function (request, response) {
 
 	console.log(request.method);
 	console.log(request.headers);
 	console.log(request.url);
 
-   	var reqURL = url.parse(request.url);
-   	console.log(request.method + " Request for " + reqURL.pathname + " received.");
+	var reqURL = url.parse(request.url);
+	console.log(request.method + " Request for " + reqURL.pathname + " received.");
 
 	// Expected request format:
 	// http://server.example.com/lists/<list_id>
@@ -45,7 +46,7 @@ server.on('request', function (request, response) {
 
 	response.setHeader("Content-Type", "text/javascript");
 	response.setHeader('Access-Control-Allow-Origin', '*');
-	
+
 	var splitURL = reqURL.pathname.split("/");
 	if (splitURL[0] === "" && splitURL[1] === "lists" && splitURL.length === 3) {
 		var resourceId = splitURL[2];
@@ -94,7 +95,7 @@ function handlePost(request, response, resourceId) {
 		fs.writeFile(filePath, data, function (err) {
 			// TODO: error handling has not been tested, not sure it would work correctly
 			if (err) {
-				console.log('Error at trying to save file ' + filePath);	
+				console.log('Error at trying to save file ' + filePath);
 				return console.log(err);
 			} else {
 				console.log('File successfully saved ' + filePath);
