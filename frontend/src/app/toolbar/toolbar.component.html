@@ -13,6 +13,7 @@ The height of this div varies based on the content of the toolbar (edition mode 
     <label class="my-label" for="editModeChk">edit mode</label>
     <input id="editModeChk" type="checkbox" class="my-checkbox" [(ngModel)]="listService.isEditionMode" />
     <div class="save-load">
+      <button class="default-button" (click)="displayConfig()">config</button>
       <button class="default-button" [disabled]="isSaveInProgress" (click)="saveList()">save</button>
       <button class="default-button" [disabled]="isLoadInProgress" (click)="loadList()">load</button>
     </div>

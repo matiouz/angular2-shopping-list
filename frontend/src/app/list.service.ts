@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { type Category } from './model/category';
 import { ListBackendService } from './list-backend.service';
 import { BehaviorSubject } from 'rxjs';
-import { Item } from './model/item';
 
 @Injectable({
   providedIn: 'root',
@@ -38,8 +37,17 @@ export class ListService {
   isEditionMode: boolean = false;
   isDisplayNotNeededItems: boolean = true;
 
-  listURL: string = 'http://localhost:3002/lists/list1.json';
-  // listURL: string = "http://142.3.32.98:3002/lists/list1.json";
+  defaultConfiguration: Configuration = {
+    code: 'xxxxx',
+    baseUrl: 'http://localhost:3002/lists/',
+    listId: 'list1',
+  };
+
+  configuration = this.defaultConfiguration;
+
+  get listURL(): string {
+    return this.configuration.baseUrl + this.configuration.listId;
+  }
 
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
   public categories$ = this.categoriesSubject.asObservable();
@@ -90,4 +98,23 @@ export class ListService {
       error: errorHandler,
     });
   }
+
+  saveConfiguration() {
+    localStorage.setItem('configuration', JSON.stringify(this.configuration));
+  }
+
+  loadConfiguration() {
+    const configurationAsString = localStorage.getItem('configuration');
+    if (configurationAsString != null) {
+      this.configuration = <Configuration>JSON.parse(configurationAsString);
+    } else {
+      this.configuration = this.defaultConfiguration;
+    }
+  }
+}
+
+interface Configuration {
+  code: string;
+  baseUrl: string;
+  listId: string;
 }

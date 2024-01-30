@@ -1,4 +1,5 @@
 @if (this.listService.categories$ | async; as categories) {
-  <app-toolbar [categories]="categories"></app-toolbar>
+  <app-toolbar (displayConfigEvt)="displayConfig($event)" [categories]="categories"></app-toolbar>
   <app-categories-list [categories]="categories"></app-categories-list>
 }
+<app-configurator #configurator></app-configurator>

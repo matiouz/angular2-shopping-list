@@ -1,0 +1,19 @@
+<div #configurationModal class="container">
+  <div class="content">
+    <form #configurationForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="Base URL">Server URL</label>
+        <input type="text" class="form-control" id="baseUrl" name="baseUrl" [(ngModel)]="baseUrl" required />
+      </div>
+      <div class="form-group">
+        <label for="List id">List id</label>
+        <input type="text" class="form-control" id="listId" name="listId" [(ngModel)]="listId" required />
+      </div>
+      <div class="form-group">
+        <label for="Code">Code</label>
+        <input type="text" class="form-control" id="code" name="code" [(ngModel)]="code" required />
+      </div>
+      <button class="default-button" type="submit">Apply</button>
+    </form>
+  </div>
+</div>

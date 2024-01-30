@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListService } from '../list.service';
 import { FormsModule } from '@angular/forms';
 import { CategoryCreatorComponent } from '../category-creator/category-creator.component';
@@ -20,7 +20,14 @@ export class ToolbarComponent {
   @Input()
   categories!: Category[];
 
+  @Output()
+  displayConfigEvt = new EventEmitter();
+
   constructor(public listService: ListService) {}
+
+  displayConfig() {
+    this.displayConfigEvt.emit();
+  }
 
   saveList() {
     this.isSaveInProgress = true;
