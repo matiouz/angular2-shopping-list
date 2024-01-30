@@ -5,5 +5,12 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.projectLanguageModel": 4,
-    "azureFunctions.preDeployTask": "npm prune (functions)"
+    "azureFunctions.preDeployTask": "npm prune (functions)",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[typescript]": {
+        // without this, the formatter provided with the typescript/javascript language is used
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "eslint.alwaysShowStatus": true
 }
