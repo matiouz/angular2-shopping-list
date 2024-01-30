@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Node",
+      "type": "node",
+      "request": "attach",
+      "address": "142.3.32.98",
+      "port": 5858,
+      "restart": false,
+      "localRoot": "${workspaceRoot}",
+      "remoteRoot": "S:\\THALES\\mgy\\angular2\\list-server"
+    },
+    {
+      "name": "Attach to Node Functions",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "preLaunchTask": "func: host start"
+    }
+  ]
+}
