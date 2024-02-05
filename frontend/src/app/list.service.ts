@@ -35,7 +35,7 @@ export class ListService {
 
   // Global settings. Since it's only 2 properties, we leave them in this service
   isEditionMode: boolean = false;
-  isDisplayNotNeededItems: boolean = true;
+  isDisplayNotNeededItems: boolean = false;
 
   defaultConfiguration: Configuration = {
     code: 'xxxxx',
