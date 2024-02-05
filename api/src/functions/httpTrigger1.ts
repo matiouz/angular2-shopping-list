@@ -44,7 +44,7 @@ async function handleGet(
 
     return { body: file };
   } catch (err) {
-    return { status: 500, body: "error reading file" };
+    return { status: 500, body: '{"message": "error reading file"}' };
   }
 }
 
@@ -58,10 +58,10 @@ async function handlePut(
   try {
     await fs.promises.writeFile(filePath, await request.text());
     console.log("File successfully saved " + filePath);
-    return { body: "File successfully saved" };
+    return { body: '{"message": "File successfully saved"}' };
   } catch (err) {
     console.log("Error trying to save file " + filePath);
     console.log(err);
-    return { status: 500, body: "error writing file" };
+    return { status: 500, body: '{"message": "error writing file"}' };
   }
 }
