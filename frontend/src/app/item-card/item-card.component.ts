@@ -35,7 +35,9 @@ export class ItemCardComponent {
   }
 
   deleteItem() {
-    this.deleteItemEvt.emit(this.item);
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      this.deleteItemEvt.emit(this.item);
+    }
   }
 
   moveItemUp() {

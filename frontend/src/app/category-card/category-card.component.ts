@@ -40,7 +40,9 @@ export class CategoryCardComponent {
   }
 
   deleteCategory() {
-    this.deleteCategoryEvt.emit(this.category);
+    if (window.confirm('Are you sure you want to delete this category?')) {
+      this.deleteCategoryEvt.emit(this.category);
+    }
   }
 
   moveCategoryUp() {
