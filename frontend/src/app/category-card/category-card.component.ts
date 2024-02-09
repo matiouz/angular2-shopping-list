@@ -100,7 +100,7 @@ export class CategoryCardComponent {
     if (!this.filterExpression) {
       return true;
     } else {
-      return item.name.includes(this.filterExpression);
+      return item.name.toLowerCase().includes(this.filterExpression.toLowerCase());
     }
   }
 }
