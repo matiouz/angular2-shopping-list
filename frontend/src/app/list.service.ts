@@ -33,10 +33,6 @@ export class ListService {
     },
   ];
 
-  // Global settings. Since it's only 2 properties, we leave them in this service
-  isEditionMode: boolean = false;
-  isDisplayNotNeededItems: boolean = false;
-
   defaultConfiguration: Configuration = {
     code: 'xxxxx',
     baseUrl: 'http://localhost:3002/lists/',

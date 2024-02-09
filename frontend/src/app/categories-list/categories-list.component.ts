@@ -3,6 +3,7 @@ import { CategoryCardComponent } from '../category-card/category-card.component'
 import { ListService } from '../list.service';
 import { AsyncPipe } from '@angular/common';
 import { Category } from '../model/category';
+import { UiConfigService } from '../ui-config.service';
 
 @Component({
   selector: 'app-categories-list',
@@ -12,10 +13,22 @@ import { Category } from '../model/category';
   styleUrl: './categories-list.component.scss',
 })
 export class CategoriesListComponent {
-  constructor(public listService: ListService) {}
+  constructor(
+    public listService: ListService,
+    public uiConfigService: UiConfigService
+  ) {}
 
   @Input({ required: true })
   categories!: Category[];
+
+  @Input({ required: true })
+  isEditionMode!: boolean;
+
+  @Input({ required: true })
+  isDisplayNotNeededItems!: boolean;
+
+  @Input({ required: true })
+  filterExpression!: string | null;
 
   categoryUpdated(category: Category) {
     this.listService.saveToLocalStorage();

@@ -1,24 +1,28 @@
 <!-- Empty div that take the same height as the toolbar. Since the toolbar is fixed at the top, it is displayed over the rest, so we need to push down the first category
 The height of this div varies based on the content of the toolbar (edition mode or not) -->
-@if (listService.isEditionMode) {
-  <div style="height: 8rem"></div>
+@if (uiConfigService.isEditionMode) {
+  <div style="height: 10rem"></div>
 } @else {
-  <div style="height: 3rem"></div>
+  <div style="height: 5rem"></div>
 }
 
 <div class="fixed-toolbar">
   <div class="main-buttons-bar">
-    <label class="my-label" for="showNeededChk">show all</label>
-    <input id="showNeededChk" type="checkbox" class="my-checkbox" [(ngModel)]="listService.isDisplayNotNeededItems" />
-    <label class="my-label" for="editModeChk">edit mode</label>
-    <input id="editModeChk" type="checkbox" class="my-checkbox" [(ngModel)]="listService.isEditionMode" />
+    <label class="my-label" for="showAllChk">show all</label>
+    <input id="showAllChk" type="checkbox" class="my-checkbox" [(ngModel)]="uiConfigService.isDisplayNotNeededItems" />
+    <label class="my-label" for="editModeChk">edit</label>
+    <input id="editModeChk" type="checkbox" class="my-checkbox" [(ngModel)]="uiConfigService.isEditionMode" />
+
     <div class="save-load">
       <button class="default-button" (click)="displayConfig()">config</button>
       <button class="default-button" [disabled]="isSaveInProgress" (click)="saveList()">save</button>
       <button class="default-button" [disabled]="isLoadInProgress" (click)="loadList()">load</button>
     </div>
   </div>
-  @if (listService.isEditionMode) {
+
+  <app-filter-config (filterConfigEvt)="filterConfig($event)"></app-filter-config>
+
+  @if (uiConfigService.isEditionMode) {
     <div class="creator">
       <app-item-creator (addItemEvt)="addItem($event)" [categories]="categories"></app-item-creator>
       <app-category-creator (addCategoryEvt)="addCategory($event)"></app-category-creator>

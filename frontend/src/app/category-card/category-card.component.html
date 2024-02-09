@@ -14,7 +14,7 @@
 </div>
 
 @for (currentItem of category.items; track currentItem.name) {
-  @if (isDisplayNotNeededItems || currentItem.isNeeded) {
+  @if ((isDisplayNotNeededItems || currentItem.isNeeded) && isMatchFilter(currentItem)) {
     <app-item-card
       [item]="currentItem"
       (itemUpdatedEvt)="itemUpdated($event)"

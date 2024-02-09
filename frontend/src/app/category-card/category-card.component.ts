@@ -21,6 +21,9 @@ export class CategoryCardComponent {
   @Input({ required: true })
   isDisplayNotNeededItems!: boolean;
 
+  @Input({ required: true })
+  filterExpression!: string | null;
+
   @Output()
   categoryUpdatedEvt = new EventEmitter<Category>();
 
@@ -91,5 +94,13 @@ export class CategoryCardComponent {
       }
     }
     this.categoryUpdatedEvt.emit(this.category);
+  }
+
+  isMatchFilter(item: Item) {
+    if (!this.filterExpression) {
+      return true;
+    } else {
+      return item.name.includes(this.filterExpression);
+    }
   }
 }

@@ -2,8 +2,9 @@
   <app-category-card
     [category]="currentCategory"
     (categoryUpdatedEvt)="categoryUpdated($event)"
-    [isEditionMode]="listService.isEditionMode"
-    [isDisplayNotNeededItems]="listService.isDisplayNotNeededItems"
+    [isEditionMode]="isEditionMode"
+    [isDisplayNotNeededItems]="isDisplayNotNeededItems"
+    [filterExpression]="filterExpression"
     (deleteCategoryEvt)="deleteCategory($event)"
     (moveCategoryUpEvt)="moveCategoryUp($event)"
     (moveCategoryDownEvt)="moveCategoryDown($event)"

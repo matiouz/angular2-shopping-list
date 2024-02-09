@@ -1,5 +1,10 @@
 @if (this.listService.categories$ | async; as categories) {
   <app-toolbar (displayConfigEvt)="displayConfig($event)" [categories]="categories"></app-toolbar>
-  <app-categories-list [categories]="categories"></app-categories-list>
+  <app-categories-list
+    [categories]="categories"
+    [isEditionMode]="uiConfigService.isEditionMode"
+    [isDisplayNotNeededItems]="uiConfigService.isDisplayNotNeededItems"
+    [filterExpression]="uiConfigService.itemNameFilterExpression"
+  ></app-categories-list>
 }
 <app-configurator #configurator></app-configurator>

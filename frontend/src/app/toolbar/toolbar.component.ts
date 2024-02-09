@@ -5,11 +5,13 @@ import { CategoryCreatorComponent } from '../category-creator/category-creator.c
 import { ItemCreatorComponent } from '../item-creator/item-creator.component';
 import { ItemToAdd } from '../model/item';
 import { Category } from '../model/category';
+import { UiConfigService } from '../ui-config.service';
+import { FilterConfigComponent } from '../filter-config/filter-config.component';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [FormsModule, CategoryCreatorComponent, ItemCreatorComponent],
+  imports: [FormsModule, CategoryCreatorComponent, ItemCreatorComponent, FilterConfigComponent],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
@@ -23,7 +25,13 @@ export class ToolbarComponent {
   @Output()
   displayConfigEvt = new EventEmitter();
 
-  constructor(public listService: ListService) {}
+  @Output()
+  itemFilterChangeEvt = new EventEmitter<string | null>();
+
+  constructor(
+    public listService: ListService,
+    public uiConfigService: UiConfigService
+  ) {}
 
   displayConfig() {
     this.displayConfigEvt.emit();
@@ -78,5 +86,9 @@ export class ToolbarComponent {
     console.log('Error when loading, from toolbar: ' + error);
     alert('Error when loading');
     this.isLoadInProgress = false;
+  }
+
+  filterConfig(filterExpression: string | null) {
+    this.uiConfigService.itemNameFilterExpression = filterExpression;
   }
 }

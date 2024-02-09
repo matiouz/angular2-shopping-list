@@ -4,6 +4,7 @@ import { CategoriesListComponent } from '../categories-list/categories-list.comp
 import { ListService } from '../list.service';
 import { CommonModule } from '@angular/common';
 import { ConfiguratorComponent } from '../configurator/configurator.component';
+import { UiConfigService } from '../ui-config.service';
 
 @Component({
   selector: 'app-main-page',
@@ -13,7 +14,10 @@ import { ConfiguratorComponent } from '../configurator/configurator.component';
   imports: [CommonModule, CategoriesListComponent, ToolbarComponent, ConfiguratorComponent],
 })
 export class MainPageComponent implements OnInit {
-  constructor(public listService: ListService) {}
+  constructor(
+    public listService: ListService,
+    public uiConfigService: UiConfigService
+  ) {}
 
   @ViewChild('configurator', { static: false })
   configuratorComponent!: ConfiguratorComponent;
