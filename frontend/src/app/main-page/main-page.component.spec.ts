@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainPageComponent } from './main-page.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { ListService } from '../list.service';
 import { of } from 'rxjs';
 import { UiConfigService } from '../ui-config.service';
 import { Category } from '../model/category';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 let listServiceMock: Partial<ListService>;
 
@@ -24,9 +25,9 @@ describe('MainPageComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [MainPageComponent, HttpClientTestingModule],
-      providers: [{ provide: ListService, useValue: listServiceMock }],
-    }).compileComponents();
+    imports: [MainPageComponent],
+    providers: [{ provide: ListService, useValue: listServiceMock }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
 
     uiConfigService = TestBed.inject(UiConfigService);
 
