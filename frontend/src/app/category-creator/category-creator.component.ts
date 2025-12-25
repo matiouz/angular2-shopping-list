@@ -2,11 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-category-creator',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './category-creator.component.html',
-  styleUrl: './category-creator.component.scss',
+    selector: 'app-category-creator',
+    imports: [FormsModule],
+    templateUrl: './category-creator.component.html',
+    styleUrl: './category-creator.component.scss'
 })
 export class CategoryCreatorComponent {
   name?: string;

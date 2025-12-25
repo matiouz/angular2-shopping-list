@@ -3,11 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { ListService } from '../list.service';
 
 @Component({
-  selector: 'app-configurator',
-  standalone: true,
-  imports: [[FormsModule]],
-  templateUrl: './configurator.component.html',
-  styleUrl: './configurator.component.scss',
+    selector: 'app-configurator',
+    imports: [[FormsModule]],
+    templateUrl: './configurator.component.html',
+    styleUrl: './configurator.component.scss'
 })
 export class ConfiguratorComponent {
   @ViewChild('configurationModal', { static: false })

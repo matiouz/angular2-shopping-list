@@ -7,11 +7,10 @@ import { ConfiguratorComponent } from '../configurator/configurator.component';
 import { UiConfigService } from '../ui-config.service';
 
 @Component({
-  selector: 'app-main-page',
-  standalone: true,
-  templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.scss',
-  imports: [CommonModule, CategoriesListComponent, ToolbarComponent, ConfiguratorComponent],
+    selector: 'app-main-page',
+    templateUrl: './main-page.component.html',
+    styleUrl: './main-page.component.scss',
+    imports: [CommonModule, CategoriesListComponent, ToolbarComponent, ConfiguratorComponent]
 })
 export class MainPageComponent implements OnInit {
   constructor(

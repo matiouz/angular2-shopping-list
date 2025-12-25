@@ -5,11 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { Item, ItemToAdd } from '../model/item';
 
 @Component({
-  selector: 'app-item-creator',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './item-creator.component.html',
-  styleUrl: './item-creator.component.scss',
+    selector: 'app-item-creator',
+    imports: [FormsModule],
+    templateUrl: './item-creator.component.html',
+    styleUrl: './item-creator.component.scss'
 })
 export class ItemCreatorComponent {
   selectedCategory?: Category;
