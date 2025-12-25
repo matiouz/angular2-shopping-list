@@ -5,11 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { Item } from '../model/item';
 
 @Component({
-  selector: 'app-category-card',
-  standalone: true,
-  imports: [FormsModule, ItemCardComponent],
-  templateUrl: './category-card.component.html',
-  styleUrl: './category-card.component.scss',
+    selector: 'app-category-card',
+    imports: [FormsModule, ItemCardComponent],
+    templateUrl: './category-card.component.html',
+    styleUrl: './category-card.component.scss'
 })
 export class CategoryCardComponent {
   @Input({ required: true })

@@ -6,11 +6,10 @@ import { Category } from '../model/category';
 import { UiConfigService } from '../ui-config.service';
 
 @Component({
-  selector: 'app-categories-list',
-  standalone: true,
-  imports: [CategoryCardComponent, AsyncPipe],
-  templateUrl: './categories-list.component.html',
-  styleUrl: './categories-list.component.scss',
+    selector: 'app-categories-list',
+    imports: [CategoryCardComponent, AsyncPipe],
+    templateUrl: './categories-list.component.html',
+    styleUrl: './categories-list.component.scss'
 })
 export class CategoriesListComponent {
   constructor(

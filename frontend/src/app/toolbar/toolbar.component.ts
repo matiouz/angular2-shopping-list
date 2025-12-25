@@ -9,11 +9,10 @@ import { UiConfigService } from '../ui-config.service';
 import { FilterConfigComponent } from '../filter-config/filter-config.component';
 
 @Component({
-  selector: 'app-toolbar',
-  standalone: true,
-  imports: [FormsModule, CategoryCreatorComponent, ItemCreatorComponent, FilterConfigComponent],
-  templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss',
+    selector: 'app-toolbar',
+    imports: [FormsModule, CategoryCreatorComponent, ItemCreatorComponent, FilterConfigComponent],
+    templateUrl: './toolbar.component.html',
+    styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
   isLoadInProgress: boolean = false;

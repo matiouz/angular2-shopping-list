@@ -2,11 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-filter-config',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './filter-config.component.html',
-  styleUrl: './filter-config.component.scss',
+    selector: 'app-filter-config',
+    imports: [FormsModule],
+    templateUrl: './filter-config.component.html',
+    styleUrl: './filter-config.component.scss'
 })
 export class FilterConfigComponent {
   @Output()
