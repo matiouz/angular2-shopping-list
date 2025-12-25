@@ -53,8 +53,8 @@ server.on('request', function (request, response) {
 
 		if (request.method == 'GET') {
 			handleGet(resourceId, response);
-		} else if (request.method == 'POST') {
-			handlePost(request, response, resourceId);
+		} else if (request.method == 'PUT') {
+			handlePut(request, response, resourceId);
 		} else if (request.method == 'OPTIONS') {
 			handleOptions(request, response, resourceId);
 		} else {
@@ -81,7 +81,7 @@ function handleGet(resourceId, response) {
 	}
 }
 
-function handlePost(request, response, resourceId) {
+function handlePut(request, response, resourceId) {
 	var data = '';
 
 	request.on('data', function (chunk) {
