@@ -1,13 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CategoryCardComponent } from '../category-card/category-card.component';
 import { ListService } from '../list.service';
-import { AsyncPipe } from '@angular/common';
 import { Category } from '../model/category';
 import { UiConfigService } from '../ui-config.service';
 
 @Component({
     selector: 'app-categories-list',
-    imports: [CategoryCardComponent, AsyncPipe],
+    imports: [CategoryCardComponent],
     templateUrl: './categories-list.component.html',
     styleUrl: './categories-list.component.scss'
 })
