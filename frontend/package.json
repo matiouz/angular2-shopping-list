@@ -30,7 +30,7 @@
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.6",
     "jsdom": "^27.4.0",
-    "prettier": "^3.2.2",
+    "prettier": "^3.7.4",
     "typescript": "~5.9.3",
     "vitest": "^4.0.16"
   },
