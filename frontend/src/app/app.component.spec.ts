@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { expect, describe, it, beforeEach } from 'vitest';
+
 import { AppComponent } from './app.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -6,9 +8,9 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [AppComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+      imports: [AppComponent],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+    }).compileComponents();
   });
 
   it('should create the app', () => {

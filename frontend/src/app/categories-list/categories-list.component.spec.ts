@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { expect, describe, it, beforeEach } from 'vitest'
 
 import { CategoriesListComponent } from './categories-list.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
