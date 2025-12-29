@@ -1,25 +1,50 @@
 .category {
-  background-color: #80a5b7;
-  border-radius: 5px;
-  border: 1px solid #607d8b;
-  padding: 5;
-  color: whitesmoke;
-  font-weight: bold;
-  padding: 4px;
-  overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  border-radius: var(--radius-lg);
+  border: none;
+  padding: 1rem;
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
+}
+
+.category:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
 }
 
 button {
-  float: right;
+  margin-left: 0.5rem;
 }
 
 .categoryName {
-  /* just to center vertically */
   display: inline-block;
   vertical-align: middle;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 0.5rem 0;
+  flex: 1;
+}
+
+.categoryName input {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.categoryName input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: white;
 }

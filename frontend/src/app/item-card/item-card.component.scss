@@ -1,31 +1,68 @@
 .item {
-  /*background-color: lavender;*/
-  border: 1px solid thistle;
-  border-radius: 5px;
-  padding: 4px;
-  overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
-
+  background-color: var(--surface-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.item:hover {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-md);
+  background-color: #fafbfc;
 }
 
 button {
-  float: right;
+  margin-left: 0.5rem;
 }
 
 .itemName {
-  /* just to center vertically */
   display: inline-block;
   vertical-align: middle;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 0.5rem 0;
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.item input[type="text"] {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.item input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: white;
 }
 
 #isNeededChk {
-  float: right;
-  border: 1px solid grey;
-  height: 2rem;
-  width: 2rem;
-  margin: 2px;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  accent-color: var(--secondary-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+#isNeededChk:hover {
+  border-color: var(--secondary-color);
+}
+
+#isNeededChk:checked {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
