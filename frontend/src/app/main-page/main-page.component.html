@@ -1,10 +1,14 @@
-@if (this.listService.categories$ | async; as categories) {
-  <app-toolbar (displayConfigEvt)="displayConfig($event)" [categories]="categories"></app-toolbar>
-  <app-categories-list
-    [categories]="categories"
-    [isEditionMode]="uiConfigService.isEditionMode"
-    [isDisplayNotNeededItems]="uiConfigService.isDisplayNotNeededItems"
-    [filterExpression]="uiConfigService.itemNameFilterExpression"
-  ></app-categories-list>
-}
+<div class="main-content">
+  @if (this.listService.categories$ | async; as categories) {
+    <app-toolbar (displayConfigEvt)="displayConfig($event)" [categories]="categories"></app-toolbar>
+    <div class="categories-container fade-in" [class.with-toolbar-margin]="true" [class.edition-mode-margin]="uiConfigService.isEditionMode">
+      <app-categories-list
+        [categories]="categories"
+        [isEditionMode]="uiConfigService.isEditionMode"
+        [isDisplayNotNeededItems]="uiConfigService.isDisplayNotNeededItems"
+        [filterExpression]="uiConfigService.itemNameFilterExpression"
+      ></app-categories-list>
+    </div>
+  }
+</div>
 <app-configurator #configurator></app-configurator>

@@ -1,11 +1,11 @@
 <div class="filter-config">
   <input
     type="text"
-    placeholder="Type to search"
+    placeholder="🔍 Search items..."
     class="filter-input"
     [(ngModel)]="filterExpression"
     (keyup)="filterExpressionChanged()"
   />
 
-  <button (click)="resetFilter()">X</button>
+  <button class="filter-reset" (click)="resetFilter()">✕</button>
 </div>
