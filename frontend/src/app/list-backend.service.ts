@@ -15,8 +15,14 @@ const httpOptions = {
 export class ListBackendService {
   constructor(private http: HttpClient) {}
 
-  getCategories(url: string): Observable<Category[]> {
-    return this.http.get<Category[]>(url, httpOptions).pipe(catchError(this.handleError));
+  getCategories(url: string, apiKey?: string): Observable<Category[]> {
+    const options = apiKey ? {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-API-Key': apiKey,
+      }),
+    } : httpOptions;
+    return this.http.get<Category[]>(url, options).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -32,7 +38,13 @@ export class ListBackendService {
     return throwError(() => new Error('Error running http request: ' + error.message));
   }
 
-  saveCategories(url: string, categories: Category[]): Observable<boolean> {
-    return this.http.put<boolean>(url, categories, httpOptions).pipe(catchError(this.handleError));
+  saveCategories(url: string, categories: Category[], apiKey?: string): Observable<boolean> {
+    const options = apiKey ? {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-API-Key': apiKey,
+      }),
+    } : httpOptions;
+    return this.http.put<boolean>(url, categories, options).pipe(catchError(this.handleError));
   }
 }
