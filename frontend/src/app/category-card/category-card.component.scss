@@ -1,25 +1,43 @@
 .category {
-  background-color: #80a5b7;
-  border-radius: 5px;
-  border: 1px solid #607d8b;
-  padding: 5;
-  color: whitesmoke;
-  font-weight: bold;
-  padding: 4px;
-  overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  border: none;
+  padding: 0.5em 0.75em;
+  color: white;
+  font-weight: 600;
+  margin: 0.25em 0;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 
-button {
-  float: right;
+.category:hover {
+  transform: translateY(-0.125em);
+  box-shadow: var(--shadow-md);
+}
+
+.category-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .categoryName {
-  /* just to center vertically */
-  display: inline-block;
-  vertical-align: middle;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: 1rem;
+  flex-grow: 1;
+}
+
+.categoryName input {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 0.0625em solid rgba(255, 255, 255, 0.3);
+  padding: 0.25em 0.5em;
+  border-radius: var(--border-radius-sm);
+}
+
+.categoryName input:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
 }

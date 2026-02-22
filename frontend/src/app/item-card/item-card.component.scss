@@ -1,31 +1,39 @@
 .item {
-  /*background-color: lavender;*/
-  border: 1px solid thistle;
-  border-radius: 5px;
-  padding: 4px;
-  overflow: hidden; /* required because buttons are floating. So without this, they flow out of the div */
-
+  background-color: var(--surface-color);
+  border: 0.0625em solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 0.5em 0.75em;
+  margin: 0.125em 0;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 
-button {
-  float: right;
+.item:hover {
+  background-color: rgba(66, 133, 244, 0.05);
+  border-color: var(--primary-color);
+  transform: translateX(0.25em);
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .itemName {
-  /* just to center vertically */
-  display: inline-block;
-  vertical-align: middle;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  font-size: 1rem;
+  flex-grow: 1;
 }
 
-#isNeededChk {
-  float: right;
-  border: 1px solid grey;
-  height: 2rem;
-  width: 2rem;
-  margin: 2px;
+.itemName input {
+  padding: 0.25em 0.5em;
+  border: 0.0625em solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+}
+
+.item-checkbox {
+  cursor: pointer;
 }

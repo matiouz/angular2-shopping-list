@@ -1,13 +1,13 @@
 <div class="category">
   @if (isEditionMode) {
     <span class="categoryName">
-      <input [(ngModel)]="category.name" (blur)="categoryNameUpdated()" style="width: 120" />
+      <input [(ngModel)]="category.name" (blur)="categoryNameUpdated()" style="width: 7.5em" />
     </span>
-    <span>
-      <button class="default-button" (click)="deleteCategory()">✗</button>
+    <div class="category-actions">
+      <button class="default-button" (click)="deleteCategory()">🗑️</button>
       <button class="default-button" (click)="moveCategoryUp()">↑</button>
       <button class="default-button" (click)="moveCategoryDown()">↓</button>
-    </span>
+    </div>
   } @else {
     <span class="categoryName">{{ category.name }}</span>
   }

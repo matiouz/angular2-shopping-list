@@ -2,7 +2,7 @@
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 11.25em; /* Account for toolbar height (5.25em normal + 6em buffer) */
   left: 0;
   top: 0;
   width: 100%;
@@ -12,19 +12,64 @@
 }
 
 .content {
-  background-color: #fefefe;
+  background-color: var(--surface-color);
   margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
+  padding: 1em;
+  border-radius: var(--border-radius-md);
   width: 80%;
-  box-shadow: 10px 5px 5px black;
+  max-width: 40em;
+  box-shadow: var(--shadow-lg);
+  border: 0.0625em solid var(--border-color);
 }
 
-label,
-input {
+label {
   display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.25em;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5em 0.75em;
+  border: 0.0625em solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+  margin-bottom: 1em;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.125em rgba(66, 133, 244, 0.2);
 }
 
 .form-group {
-  margin: 1rem;
+  margin-bottom: 1em;
+}
+
+.zoom-controls {
+  margin-bottom: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.zoom-controls label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.zoom-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5em;
+  justify-content: flex-end;
 }

@@ -1,31 +1,31 @@
-<!-- Empty div that take the same height as the toolbar. Since the toolbar is fixed at the top, it is displayed over the rest, so we need to push down the first category
-The height of this div varies based on the content of the toolbar (edition mode or not) -->
-@if (uiConfigService.isEditionMode) {
-  <div style="height: 10rem"></div>
-} @else {
-  <div style="height: 5rem"></div>
-}
-
-<div class="fixed-toolbar">
-  <div class="main-buttons-bar">
-    <label class="my-label" for="showAllChk">Show all</label>
-    <input id="showAllChk" type="checkbox" class="my-checkbox" [(ngModel)]="uiConfigService.isDisplayNotNeededItems" />
-    <label class="my-label" for="editModeChk">Edit</label>
-    <input id="editModeChk" type="checkbox" class="my-checkbox" [(ngModel)]="uiConfigService.isEditionMode" />
-
-    <div class="save-load">
-      <button class="default-button" (click)="displayConfig()">config</button>
-      <button class="default-button" [disabled]="isSaveInProgress" (click)="saveList()">save</button>
-      <button class="default-button" [disabled]="isLoadInProgress" (click)="loadList()">load</button>
+<div class="fixed-toolbar" [class.disabled]="disabled">
+  <div class="search-line">
+    <app-filter-config (filterConfigEvt)="filterConfig($event)"></app-filter-config>
+  </div>
+  <div class="controls-line">
+    <div class="checkboxes-group">
+      <div class="control-group">
+        <label class="my-label" for="showAllChk">Show all</label>
+        <input id="showAllChk" type="checkbox" class="my-checkbox" [(ngModel)]="uiConfigService.isDisplayNotNeededItems" />
+      </div>
+      <div class="control-group">
+        <label class="my-label" for="editModeChk">Edit</label>
+        <input id="editModeChk" type="checkbox" class="my-checkbox" [(ngModel)]="uiConfigService.isEditionMode" />
+      </div>
+    </div>
+    <div class="buttons-group">
+      <button class="default-button" (click)="displayConfig()">Config</button>
+      <button class="default-button" [disabled]="isSaveInProgress" (click)="saveList()">Save</button>
+      <button class="default-button" [disabled]="isLoadInProgress" (click)="loadList()">Load</button>
     </div>
   </div>
 
-  <app-filter-config (filterConfigEvt)="filterConfig($event)"></app-filter-config>
-
-  @if (uiConfigService.isEditionMode) {
+  @if (uiConfigService.isEditionMode && !disabled) {
     <div class="creator">
-      <app-item-creator (addItemEvt)="addItem($event)" [categories]="categories"></app-item-creator>
-      <app-category-creator (addCategoryEvt)="addCategory($event)"></app-category-creator>
+      <div class="creator-content">
+        <app-item-creator (addItemEvt)="addItem($event)" [categories]="categories"></app-item-creator>
+        <app-category-creator (addCategoryEvt)="addCategory($event)"></app-category-creator>
+      </div>
     </div>
   }
 </div>

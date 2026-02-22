@@ -1,11 +1,11 @@
-<div>
-  <div>
-    <input id="name" [(ngModel)]="name" placeholder="new item name" />
-    <select id="cat" [(ngModel)]="selectedCategory" style="max-width: 60px" required>
+<div class="item-creator">
+  <div class="creator-inputs">
+    <input id="name" [(ngModel)]="name" placeholder="New item name..." class="creator-input" />
+    <select id="cat" [(ngModel)]="selectedCategory" class="creator-select" required>
       @for (c of categories; track c.name) {
         <option [ngValue]="c">{{ c.name }}</option>
       }
     </select>
-    <button class="default-button" (click)="addItem()">+</button>
+    <button class="default-button" (click)="addItem()">Add</button>
   </div>
 </div>

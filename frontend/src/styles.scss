@@ -1,8 +1,307 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Modern color palette */
+  --primary-color: #4285f4;
+  --primary-hover: #3367d6;
+  --secondary-color: #34a853;
+  --accent-color: #ea4335;
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border-color: #dadce0;
+  --shadow-sm: 0 0.0625em 0.125em 0 rgba(60, 64, 67, 0.1);
+  --shadow-md: 0 0.0625em 0.1875em 0.0625em rgba(60, 64, 67, 0.15);
+  --shadow-lg: 0 0.125em 0.375em 0.125em rgba(60, 64, 67, 0.15);
+  --border-radius-sm: 0.25em;
+  --border-radius-md: 0.5em;
+  --border-radius-lg: 0.75em;
+  --border-radius-xl: 1em;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem; /* Base font size */
+}
+
+/* Modern button styling */
 .default-button {
-  height: 2rem;
-  min-width: 2rem;
-  margin: 2px;
-  border-radius: 12px;
-  border: 1px solid grey;
+  height: 2em;
+  min-width: 2em;
+  margin: 0.0625em;
+  border-radius: var(--border-radius-md);
+  border: 0.0625em solid var(--border-color);
+  background-color: var(--surface-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5em;
+}
+
+.default-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-0.0625em); /* 1px / 16 */
+  box-shadow: var(--shadow-sm);
+}
+
+.default-button:active {
+  transform: translateY(0);
+}
+
+.default-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Modern input styling */
+input:not([type="checkbox"]), select {
+  padding: 0.5em 0.75em;
+  border: 0.0625em solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+  margin: 0.125em;
+}
+
+input:not([type="checkbox"]):focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.125em rgba(66, 133, 244, 0.2); /* 2px / 16 */
+}
+
+/* Modern checkbox styling */
+input[type="checkbox"] {
+  appearance: none;
+  width: 1.25em;
+  height: 1.25em;
+  border: 0.1875em solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  margin: 0.125em;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 1em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Modern card styling */
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Modern container styling */
+.container {
+  max-width: 75em; /* 1200px / 16 */
+  margin: 0 auto;
+  padding: 0 1em; /* 16px / 16 */
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.gap-8 {
+  gap: 0.5em;
+}
+
+.gap-16 {
+  gap: 1em;
+}
+
+.p-8 {
+  padding: 0.5em;
+}
+
+.p-12 {
+  padding: 0.75em;
+}
+
+.p-16 {
+  padding: 1em;
+}
+
+.m-4 {
+  margin: 0.25em;
+}
+
+.m-8 {
+  margin: 0.5em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625em); /* 10px / 16 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Creator components */
+.item-creator, .category-creator {
+  width: 100%;
+}
+
+.creator-inputs {
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+}
+
+.creator-input {
+  flex-grow: 1;
+  padding: 0.5em 0.75em;
+  border: 0.0625em solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  height: 2em;
+}
+
+.creator-select {
+  padding: 0.5em 0.75em;
+  border: 0.0625em solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--surface-color);
+  cursor: pointer;
+  height: 2em;
+}
+
+/* Main content styling */
+.main-content {
+  padding: 0.5em;
+  max-width: 75em; /* 1200px / 16 */
+  margin: 0 auto;
+}
+
+/* Toolbar margin to prevent overlap */
+.with-toolbar-margin {
+  margin-top: 7em; /* Normal mode toolbar height */
+}
+
+.edition-mode-margin {
+  margin-top: 12em; /* Edition mode toolbar height (normal + creator section) */
+}
+
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375em;
+}
+
+/* Responsive design */
+@media (max-width: 48em) { /* 768px / 16 */
+  .fixed-toolbar {
+    width: 96%;
+    padding: 0.375em;
+  }
+
+  .main-buttons-bar {
+    flex-direction: column;
+    gap: 0.75em;
+  }
+
+  .toolbar-controls {
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
+  .save-load {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Keep creator inputs on same line as much as possible */
+  .creator-inputs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25em;
+  }
+
+  .creator-input {
+    flex-grow: 1;
+    min-width: 7.5em; /* Minimum width before wrapping */
+  }
+
+  .creator-select {
+    flex: 0 0 auto;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 0.625em;
+  height: 0.625em;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--border-radius-xl);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }
