@@ -64,7 +64,8 @@ export class ToolbarComponent {
 
   onSaveListFailure(error: unknown) {
     console.log('Error when saving, from toolbar: ' + error);
-    alert('Error when saving');
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    alert('Error when saving: ' + errorMessage);
     this.isSaveInProgress = false;
   }
 
@@ -86,7 +87,8 @@ export class ToolbarComponent {
 
   onLoadListFailure(error: unknown) {
     console.log('Error when loading, from toolbar: ' + error);
-    alert('Error when loading');
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    alert('Error when loading: ' + errorMessage);
     this.isLoadInProgress = false;
   }
 

@@ -23,9 +23,28 @@ var HTTP_CREATED = 201;
 var HTTP_BAD_REQUEST = 400;
 var HTTP_NOT_FOUND = 404;
 var HTTP_METHOD_NOT_ALLOWED = 405;
+var HTTP_UNAUTHORIZED = 401;
 var HTTP_INTERNAL_SERVER_ERROR = 500;
 
 var FILES_PATH = 'resources/';
+
+// API Key configuration - can be set via environment variable
+var API_KEY = process.env.API_KEY;
+API_KEY = API_KEY.trim();
+
+function checkAuthentication(request) {
+  var apiKey = request.headers['x-api-key'] || request.headers['X-API-Key'];
+  
+  if (!apiKey) {
+    return { authenticated: false, reason: 'Missing X-API-Key header' };
+  }
+  
+  if (apiKey !== API_KEY) {
+    return { authenticated: false, reason: 'Invalid API key' };
+  }
+  
+  return { authenticated: true, reason: '' };
+}
 
 var server = http.createServer();
 
@@ -50,6 +69,18 @@ server.on('request', function (request, response) {
 	var splitURL = reqURL.pathname.split("/");
 	if (splitURL[0] === "" && splitURL[1] === "lists" && splitURL.length === 3) {
 		var resourceId = splitURL[2];
+
+		// Check authentication for non-OPTIONS requests
+		if (request.method !== 'OPTIONS') {
+			var authResult = checkAuthentication(request);
+			if (!authResult.authenticated) {
+				console.log('Authentication failed: ' + authResult.reason);
+				response.statusCode = HTTP_UNAUTHORIZED;
+				response.setHeader('Content-Type', 'application/json');
+				response.end(JSON.stringify({ message: 'Unauthorized', details: authResult.reason }));
+				return;
+			}
+		}
 
 		if (request.method == 'GET') {
 			handleGet(resourceId, response);
@@ -108,8 +139,8 @@ function handlePut(request, response, resourceId) {
 }
 
 function handleOptions(request, response, resourceId) {
-	response.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
-	response.setHeader('Access-Control-Allow-Methods', '*');
+	response.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token, Authorization, X-API-Key');
+	response.setHeader('Access-Control-Allow-Methods', 'GET, PUT, OPTIONS');
 	response.setHeader('Access-Control-Expose-Headers', 'X-Api-Version, X-Request-Id, X-Response-Time');
 	response.setHeader('Access-Control-Max-Age', '1000');
 	response.statusCode = HTTP_OK;
