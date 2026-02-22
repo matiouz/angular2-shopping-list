@@ -1,6 +1,4 @@
-=======
-
-<div class="fixed-toolbar">
+<div class="fixed-toolbar" [class.disabled]="disabled">
   <div class="search-line">
     <app-filter-config (filterConfigEvt)="filterConfig($event)"></app-filter-config>
   </div>
@@ -22,7 +20,7 @@
     </div>
   </div>
 
-  @if (uiConfigService.isEditionMode) {
+  @if (uiConfigService.isEditionMode && !disabled) {
     <div class="creator">
       <div class="creator-content">
         <app-item-creator (addItemEvt)="addItem($event)" [categories]="categories"></app-item-creator>

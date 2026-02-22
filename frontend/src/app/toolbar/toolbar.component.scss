@@ -12,7 +12,15 @@
   padding: 0.125em;
   transition: all 0.3s ease;
   border: 0.0625em solid var(--border-color);
-  border-bottom: 0.1875em solid var(--primary-color); /* More visible bottom border */
+  border-bottom: 0.1875em solid var(--primary-color); /* Blue border on bottom and sides */
+  border-left: 0.1875em solid var(--primary-color);
+  border-right: 0.1875em solid var(--primary-color);
+  opacity: 1;
+}
+
+.fixed-toolbar.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .search-line {

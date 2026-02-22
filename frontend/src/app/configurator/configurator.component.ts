@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ListService } from '../list.service';
 
@@ -11,6 +11,12 @@ import { ListService } from '../list.service';
 export class ConfiguratorComponent {
   @ViewChild('configurationModal', { static: false })
   modal!: ElementRef;
+
+  @Output()
+  configuratorOpenEvt = new EventEmitter();
+
+  @Output()
+  configuratorCloseEvt = new EventEmitter();
 
   baseUrl: string = ''; //'http://localhost:3002/lists/';
   listId: string = ''; //list1
@@ -30,6 +36,7 @@ export class ConfiguratorComponent {
     this.listId = this.listService.configuration.listId;
     this.code = this.listService.configuration.code;
     this.zoomLevel = this.listService.configuration.zoomLevel;
+    this.configuratorOpenEvt.emit();
   }
 
   onSubmit() {
@@ -61,5 +68,6 @@ export class ConfiguratorComponent {
 
   close() {
     this.modal.nativeElement.style.display = 'none';
+    this.configuratorCloseEvt.emit();
   }
 }

@@ -21,6 +21,9 @@ export class ToolbarComponent {
   @Input()
   categories!: Category[];
 
+  @Input()
+  disabled: boolean = false;
+
   @Output()
   displayConfigEvt = new EventEmitter();
 

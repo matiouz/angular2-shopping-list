@@ -235,21 +235,11 @@ input[type="checkbox"]:checked::after {
 
 /* Toolbar margin to prevent overlap */
 .with-toolbar-margin {
-  margin-top: 5.25em; /* Normal mode toolbar height */
+  margin-top: 7em; /* Normal mode toolbar height */
 }
 
 .edition-mode-margin {
-  margin-top: 10.5em; /* Edition mode toolbar height (normal + creator section) */
-}
-
-@media (max-width: 48em) { /* 768px / 16 */
-  .with-toolbar-margin {
-    margin-top: 5.25em; /* Same as desktop */
-  }
-  
-  .edition-mode-margin {
-    margin-top: 10.5em; /* Same as desktop */
-  }
+  margin-top: 12em; /* Edition mode toolbar height (normal + creator section) */
 }
 
 .categories-container {

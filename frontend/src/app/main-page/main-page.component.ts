@@ -21,9 +21,19 @@ export class MainPageComponent implements OnInit {
   @ViewChild('configurator', { static: false })
   configuratorComponent!: ConfiguratorComponent;
 
+  isConfiguratorOpen: boolean = false;
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   displayConfig(event: unknown) {
     this.configuratorComponent.open();
+  }
+
+  onConfiguratorOpen(event: unknown) {
+    this.isConfiguratorOpen = true;
+  }
+
+  onConfiguratorClose(event: unknown) {
+    this.isConfiguratorOpen = false;
   }
 
   ngOnInit(): void {
