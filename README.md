@@ -2,10 +2,27 @@
 
 ## 1. Configure API Key in the backend
 
-```bash
-cd api
-export API_KEY=default-key; node index.js
+
+API_KEY and cosmos db key are defined in local.settings.json:
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "API_KEY": "<the api key>",
+    "COSMOS_ENDPOINT": "https://shopping-list.documents.azure.com:443",
+    "COSMOS_KEY": "<the cosmos key>"
+  },
+  "Host": {
+    "CORS": "*"
+  },
+  "ConnectionStrings": {}
+}
 ```
+
+Open the api folder in devcontainer (so that azure function core tools is installed)
+Hit F5 to start the azure function
 
 ## 2. Configure Frontend
 
