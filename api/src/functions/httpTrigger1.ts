@@ -6,6 +6,7 @@ import {
 } from "@azure/functions";
 
 import * as fs from "fs";
+import { CosmosClient } from "@azure/cosmos";
 import { getConfig } from "../config";
 
 export async function shoppingList(
@@ -39,7 +40,11 @@ app.http("shoppingList", {
   handler: shoppingList,
 });
 
-var FILES_PATH = "./resources/";
+const cosmosEndpoint = process.env.COSMOS_ENDPOINT;
+const cosmosKey = process.env.COSMOS_KEY;
+const databaseId = "ShoppingListDatabase";
+const containerId = "ShoppingListContainer";
+const client = new CosmosClient({ endpoint: cosmosEndpoint, key: cosmosKey });
 
 interface AuthResult {
   authenticated: boolean;
@@ -68,17 +73,23 @@ async function handleGet(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<HttpResponseInit> {
-  console.log(request.params);
-
   const resourceId = request.params.id;
-  const filePath = FILES_PATH + resourceId;
 
   try {
-    var file = await fs.promises.readFile(filePath);
+    interface Item {
+  id: string;
+  payload: string;
+}
 
-    return { body: file };
+const { resource } = await client
+      .database(databaseId)
+      .container(containerId)
+      .item(resourceId)
+      .read<Item>();
+
+    return { body: JSON.stringify(resource) };
   } catch (err) {
-    return { status: 500, body: '{"message": "error reading file"}' };
+    return { status: 500, body: '{"message": "error reading from Cosmos DB"}' };
   }
 }
 
@@ -87,15 +98,19 @@ async function handlePut(
   context: InvocationContext
 ): Promise<HttpResponseInit> {
   const resourceId = request.params.id;
-  const filePath = FILES_PATH + resourceId;
+  const payload = await request.text();
 
   try {
-    await fs.promises.writeFile(filePath, await request.text());
-    console.log("File successfully saved " + filePath);
-    return { body: '{"message": "File successfully saved"}' };
+    await client
+      .database(databaseId)
+      .container(containerId)
+      .items
+      .upsert({ id: resourceId, payload });
+    console.log("Data successfully saved to Cosmos DB");
+    return { body: '{"message": "Data successfully saved to Cosmos DB"}' };
   } catch (err) {
-    console.log("Error trying to save file " + filePath);
+    console.log("Error trying to save data to Cosmos DB");
     console.log(err);
-    return { status: 500, body: '{"message": "error writing file", "details": "' + err + '"}' };
+    return { status: 500, body: '{"message": "error writing to Cosmos DB", "details": "' + err + '"}' };
   }
 }
