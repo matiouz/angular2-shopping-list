@@ -62,6 +62,6 @@ async function handlePut(
   } catch (err) {
     console.log("Error trying to save file " + filePath);
     console.log(err);
-    return { status: 500, body: '{"message": "error writing file"}' };
+    return { status: 500, body: '{"message": "error writing file", "details": "' + err + '"}' };
   }
 }
