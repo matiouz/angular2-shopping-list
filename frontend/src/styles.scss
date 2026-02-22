@@ -210,6 +210,7 @@ input[type="checkbox"]:checked::after {
 
 .creator-input {
   flex-grow: 1;
+  min-width: 0;
   padding: 0.5em 0.75em;
   border: 0.0625em solid var(--border-color);
   border-radius: var(--border-radius-sm);
@@ -248,44 +249,6 @@ input[type="checkbox"]:checked::after {
   gap: 0.375em;
 }
 
-/* Responsive design */
-@media (max-width: 48em) { /* 768px / 16 */
-  .fixed-toolbar {
-    width: 96%;
-    padding: 0.375em;
-  }
-
-  .main-buttons-bar {
-    flex-direction: column;
-    gap: 0.75em;
-  }
-
-  .toolbar-controls {
-    flex-wrap: wrap;
-    gap: 0.5em;
-  }
-
-  .save-load {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Keep creator inputs on same line as much as possible */
-  .creator-inputs {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.25em;
-  }
-
-  .creator-input {
-    flex-grow: 1;
-    min-width: 7.5em; /* Minimum width before wrapping */
-  }
-
-  .creator-select {
-    flex: 0 0 auto;
-  }
-}
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
