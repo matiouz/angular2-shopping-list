@@ -87,12 +87,12 @@ export class ListService {
   saveOnServer(successHandler: () => void, errorHandler: (arg: unknown) => void) {
     const categories = this.categoriesSubject.getValue();
     this.listBackendService
-      .saveCategories(this.listURL, categories)
+      .saveCategories(this.listURL, categories, this.configuration.code)
       .subscribe({ next: successHandler, error: errorHandler });
   }
 
   loadFromServer(successHandler: () => void, errorHandler: (arg: unknown) => void) {
-    this.listBackendService.getCategories(this.listURL).subscribe({
+    this.listBackendService.getCategories(this.listURL, this.configuration.code).subscribe({
       next: (serverCategories: Category[]) => {
         this.categoriesSubject.next(serverCategories); // there may be a cleaner way to emit a value from another observable
         successHandler();
