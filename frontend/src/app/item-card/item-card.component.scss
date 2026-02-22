@@ -1,9 +1,9 @@
 .item {
   background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
+  border: 0.0625em solid var(--border-color);
   border-radius: var(--border-radius-md);
-  padding: 8px 12px;
-  margin: 2px 0;
+  padding: 0.5em 0.75em;
+  margin: 0.125em 0;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@
 .item:hover {
   background-color: rgba(66, 133, 244, 0.05);
   border-color: var(--primary-color);
-  transform: translateX(4px);
+  transform: translateX(0.25em);
 }
 
 .item-actions {
@@ -28,14 +28,12 @@
 }
 
 .itemName input {
-  padding: 4px 8px;
-  border: 1px solid var(--border-color);
+  padding: 0.25em 0.5em;
+  border: 0.0625em solid var(--border-color);
   border-radius: var(--border-radius-sm);
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 .item-checkbox {
-  width: 1.2rem;
-  height: 1.2rem;
   cursor: pointer;
 }

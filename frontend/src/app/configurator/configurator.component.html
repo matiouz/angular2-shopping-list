@@ -13,6 +13,14 @@
         <label for="Code">Code</label>
         <input type="text" class="form-control" id="code" name="code" [(ngModel)]="code" required />
       </div>
+      <div class="zoom-controls">
+        <label>Zoom Level: {{ (zoomLevel || 1.0).toFixed(1) }}x</label>
+        <div class="zoom-buttons">
+          <button class="default-button" type="button" (click)="zoomOut()">-</button>
+          <button class="default-button" type="button" (click)="resetZoom()">Reset</button>
+          <button class="default-button" type="button" (click)="zoomIn()">+</button>
+        </div>
+      </div>
       <button class="default-button" type="submit">Apply</button>
     </form>
   </div>

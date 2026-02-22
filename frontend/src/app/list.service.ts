@@ -37,9 +37,15 @@ export class ListService {
     code: 'xxxxx',
     baseUrl: 'http://localhost:3002/lists/',
     listId: 'list1',
+    zoomLevel: 1.0,
   };
 
-  configuration = this.defaultConfiguration;
+  configuration: Configuration = {
+    code: 'xxxxx',
+    baseUrl: 'http://localhost:3002/lists/',
+    listId: 'list1',
+    zoomLevel: 1.0,
+  };
 
   get listURL(): string {
     return this.configuration.baseUrl + this.configuration.listId;
@@ -102,10 +108,22 @@ export class ListService {
   loadConfiguration() {
     const configurationAsString = localStorage.getItem('configuration');
     if (configurationAsString != null) {
-      this.configuration = <Configuration>JSON.parse(configurationAsString);
+      const loadedConfig = JSON.parse(configurationAsString);
+      // Ensure zoomLevel is set for older configurations that might not have it
+      this.configuration = {
+        code: loadedConfig.code || this.defaultConfiguration.code,
+        baseUrl: loadedConfig.baseUrl || this.defaultConfiguration.baseUrl,
+        listId: loadedConfig.listId || this.defaultConfiguration.listId,
+        zoomLevel: loadedConfig.zoomLevel !== undefined ? loadedConfig.zoomLevel : this.defaultConfiguration.zoomLevel,
+      };
     } else {
       this.configuration = this.defaultConfiguration;
     }
+    this.applyZoomLevel();
+  }
+
+  private applyZoomLevel() {
+    document.documentElement.style.fontSize = `${this.configuration.zoomLevel * 100}%`;
   }
 }
 
@@ -113,4 +131,5 @@ interface Configuration {
   code: string;
   baseUrl: string;
   listId: string;
+  zoomLevel: number;
 }

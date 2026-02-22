@@ -2,7 +2,7 @@
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 6.25em; /* 100px / 16 */
   left: 0;
   top: 0;
   width: 100%;
@@ -14,10 +14,10 @@
 .content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
+  padding: 1.25em; /* 20px / 16 */
+  border: 0.0625em solid #888;
   width: 80%;
-  box-shadow: 10px 5px 5px black;
+  box-shadow: 0.625em 0.3125em 0.3125em black;
 }
 
 label,
@@ -27,4 +27,16 @@ input {
 
 .form-group {
   margin: 1rem;
+}
+
+.zoom-controls {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.zoom-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
